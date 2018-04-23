@@ -1,5 +1,6 @@
-import { TITLE_CHANGE, TEXT_CHANGE, TODOS_FETCH_SUCCESS, TODO_CREATE_SUCCESS } from './types';
+import { TITLE_CHANGE, TEXT_CHANGE, TODOS_FETCH_SUCCESS, TODO_CREATE_SUCCESS, TODO_FETCH_SUCCESS, SEARCH_TERM_CHANGE, TODOS_SEARCH } from './types';
 import firebase from 'firebase';
+import _ from 'lodash';
 
 export const onTitleChange = (title) => {
     return {
@@ -29,10 +30,17 @@ export const onTodoCreate = (title, text) => {
 
 export const fetchTodos = () => {
     return(dispatch) => {
+
         firebase.database().ref('/todos')
-            .on('value', snapshot => {dispatch({
+            .on('value', snapshot => {
+
+                const todos = _.map(snapshot.val(), (val, uid) => {
+                    return {...val, uid};
+                });
+
+                dispatch({
                     type: TODOS_FETCH_SUCCESS,
-                    payload: snapshot.val()
+                    payload: todos
                 });
             });
     }
@@ -45,3 +53,32 @@ export const onTodoStatusChange = (todo) => {
     }
 }
 
+export const fetchTodo = (uid) => {
+    return(dispatch) => {
+        firebase.database().ref(`/todos/${uid}`)
+            .on('value', snapshot => {dispatch({
+                    type: TODO_FETCH_SUCCESS,
+                    payload: snapshot.val()
+                });
+            });
+    }
+};
+
+export const onSearchTermChange = (searchTerm) => {
+    return {
+        type: SEARCH_TERM_CHANGE,
+        payload: searchTerm
+    }
+}
+
+export const onTodosSearch = (searchTerm, todos) => {
+    console.log(todos);
+    const filteredTodos = todos.filter(obj => {
+        return (obj.title.indexOf(searchTerm) !== -1) || (obj.text.indexOf(searchTerm) !== -1);
+    });
+
+    return {
+        type: TODOS_SEARCH,
+        payload: filteredTodos
+    }
+}

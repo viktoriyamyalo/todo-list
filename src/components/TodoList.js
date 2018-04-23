@@ -10,7 +10,13 @@ class TodoList extends Component {
     }
 
     renderTodos() {
-        const { todos } = this.props;
+        const { todos, filteredTodos } = this.props;
+        if(filteredTodos.length > 0) {
+            return filteredTodos.map(todo => {
+                return <TodoListItem key={todo.uid} todo={todo} />
+                    
+            });
+        }
         if(todos.length > 0) {
             return todos.map(todo => {
                 return <TodoListItem key={todo.uid} todo={todo} />
@@ -23,7 +29,7 @@ class TodoList extends Component {
     render() {
         
         return (
-            <div>
+            <div style={styles.containerStyle}>
                 {this.renderTodos()}
             </div>
         );
@@ -32,11 +38,16 @@ class TodoList extends Component {
 
 const mapStateToProps = (state) => {
 
-    const todos = _.map(state.todos.todos, (val, uid) => {
-        return {...val, uid};
-    });
-    
-    return { todos };
+    return { todos: state.todos.todos, filteredTodos:state.todos.filteredTodos };
 };
+
+ const styles = {
+     containerStyle: {
+         display: 'flex',
+         justifyContent: 'space-evenly',
+         alignItems: 'center',
+         flexWrap: 'wrap'
+     }
+ }
 
 export default connect(mapStateToProps, { fetchTodos })(TodoList);

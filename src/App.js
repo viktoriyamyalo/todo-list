@@ -11,7 +11,7 @@ import firebase from 'firebase';
 import reducers from './reducers';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
-import TodoListItem from './components/TodoListItem';
+import Todo from './components/Todo';
 
 const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
 
@@ -35,7 +35,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/todos/:uid" component={TodoListItem} />
+            <Route path="/todos/:uid" component={Todo} />
           </div>
         </Router>
       </Provider>

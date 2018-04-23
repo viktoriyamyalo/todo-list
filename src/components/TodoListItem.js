@@ -16,10 +16,9 @@ class TodoListItem extends Component {
 
         return (
             <div>
-                {/* <Link to={`/todos/${uid}`}> */}
+                <Link to={`/todos/${uid}`}>
                     <h3>{title}</h3>
-                {/* </Link> */}
-                <p>{text}</p>
+                 </Link>
                 <Button
                     onClick={this.onTodoStatusChange.bind(this)}
                     buttonText={`Completed: ${completed}`}
@@ -27,6 +26,12 @@ class TodoListItem extends Component {
                     />
             </div>
         );
+    }
+}
+
+const styles = {
+    containerStyle: {
+        
     }
 }
 
