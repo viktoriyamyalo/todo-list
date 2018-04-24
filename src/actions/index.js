@@ -1,4 +1,13 @@
-import { TITLE_CHANGE, TEXT_CHANGE, TODOS_FETCH_SUCCESS, TODO_CREATE_SUCCESS, TODO_FETCH_SUCCESS, SEARCH_TERM_CHANGE, TODOS_SEARCH } from './types';
+import { 
+    TITLE_CHANGE, 
+    TEXT_CHANGE, 
+    TODOS_FETCH_SUCCESS, 
+    TODO_CREATE_SUCCESS, 
+    TODO_FETCH_SUCCESS,
+    SEARCH_TERM_CHANGE, 
+    TODOS_SEARCH,
+    TOGGLE_COMPLETE
+    } from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
 
@@ -72,7 +81,7 @@ export const onSearchTermChange = (searchTerm) => {
 }
 
 export const onTodosSearch = (searchTerm, todos) => {
-    console.log(todos);
+  
     const filteredTodos = todos.filter(obj => {
         return (obj.title.indexOf(searchTerm) !== -1) || (obj.text.indexOf(searchTerm) !== -1);
     });
@@ -80,5 +89,12 @@ export const onTodosSearch = (searchTerm, todos) => {
     return {
         type: TODOS_SEARCH,
         payload: filteredTodos
+    }
+}
+
+export const onToggleComplete = (boolean) => {
+    return {
+        type: TOGGLE_COMPLETE,
+        payload: boolean
     }
 }

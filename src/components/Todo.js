@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchTodo } from '../actions';
 import { connect } from 'react-redux';
 import { Header } from './Header';
+import { Link } from 'react-router-dom';
 
 class Todo extends Component {
 
@@ -29,9 +30,12 @@ class Todo extends Component {
     render() {
         console.log(this.props)
         return(
-            <div>
-                <Header />
-                {this.renderTodo()}
+            <div className="card">
+                <div className="card-body">
+                    <Header />
+                    <Link to={'/'}>Go back</Link>
+                    {this.renderTodo()}
+                </div>
             </div>
         );
     }

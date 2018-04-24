@@ -24,17 +24,16 @@ class TodoCreateForm extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.containerStyle}>
                     <Input
                         type="text"
                         placeholder="Buy milk"
                         onChange={this.onTitleChange.bind(this)}
                         value={this.props.title}
-                        // className=""
                     />
 
                     <Textarea
-                        placeholder="But milk..."
+                        placeholder="Buy milk..."
                         rows="5"
                         onChange={this.onTextChange.bind(this)}
                         value={this.props.text}
@@ -43,6 +42,8 @@ class TodoCreateForm extends Component {
                     <Button
                         buttonText="Create Todo"
                         onClick={this.onTodoCreate.bind(this)}
+                        className="btn btn-outline-success"
+                        style={styles.buttonStyle}
                     />
             </div>
         );
@@ -53,6 +54,15 @@ const mapStateToProps = (state) => {
     return {
         title: state.todoCreateForm.title,
         text: state.todoCreateForm.text
+    }
+}
+
+const styles = {
+    containerStyle: {
+        // display: 'flex'
+    },
+    buttonStyle: {
+        marginTop: 20,
     }
 }
 

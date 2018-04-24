@@ -10,14 +10,33 @@ class TodoList extends Component {
     }
 
     renderTodos() {
-        const { todos, filteredTodos } = this.props;
+        const { todos, filteredTodos, toggleComplete } = this.props;
+        
         if(filteredTodos.length > 0) {
+
+            if( toggleComplete ) {
+                return filteredTodos.filter(obj => {
+                    return obj.completed === false;
+                }).map(todo => {
+                    return <TodoListItem key={todo.uid} todo={todo} />   
+                });
+            }
+
             return filteredTodos.map(todo => {
                 return <TodoListItem key={todo.uid} todo={todo} />
                     
             });
         }
         if(todos.length > 0) {
+
+            if( toggleComplete ) {
+                return todos.filter(obj => {
+                    return obj.completed === false;
+                }).map(todo => {
+                    return <TodoListItem key={todo.uid} todo={todo} />   
+                });
+            }
+
             return todos.map(todo => {
                 return <TodoListItem key={todo.uid} todo={todo} />
                     
@@ -38,13 +57,17 @@ class TodoList extends Component {
 
 const mapStateToProps = (state) => {
 
-    return { todos: state.todos.todos, filteredTodos:state.todos.filteredTodos };
+    return { 
+        todos: state.todos.todos,
+        filteredTodos: state.todos.filteredTodos,
+        toggleComplete: state.todoSearchForm.toggleComplete      
+    };
 };
 
  const styles = {
      containerStyle: {
          display: 'flex',
-         justifyContent: 'space-evenly',
+         justifyContent: 'flex-start',
          alignItems: 'center',
          flexWrap: 'wrap'
      }

@@ -7,7 +7,7 @@ export const Textarea = (props) => {
             <textarea 
                 rows={props.rows}
                 placeholder={props.placeholder}
-                // className={props.className}
+                className="form-control"
                 onChange={props.onChange}
                 value={props.value}
             ></textarea>

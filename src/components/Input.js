@@ -7,7 +7,7 @@ export const Input = (props) => {
             <input 
                 type={props.tyle}
                 placeholder={props.placeholder}
-                // className={props.className}
+                className="form-control"
                 onChange={props.onChange}
                 value={props.value}
             />
