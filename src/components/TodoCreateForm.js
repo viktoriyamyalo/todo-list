@@ -28,13 +28,13 @@ class TodoCreateForm extends Component {
                     <h3> Create Todo </h3>
                     <Input
                         type="text"
-                        placeholder="Buy milk"
+                        placeholder="Shopping List"
                         onChange={this.onTitleChange.bind(this)}
                         value={this.props.title}
                     />
 
                     <Textarea
-                        placeholder="Buy milk..."
+                        placeholder="1. a horse..."
                         rows="5"
                         onChange={this.onTextChange.bind(this)}
                         value={this.props.text}

@@ -18,7 +18,7 @@ class Header extends Component {
             <Button
                 onClick={this.props.toggleLoginForm}
                 buttonText="Log In/Sign Up"
-                className="btn btn-light"
+                className="btn btn-li"
             />
         </nav>
         );
@@ -35,7 +35,9 @@ const styles = {
     },
     containerStyle: {
         display: 'flex',
-        justifyContent: 'space-evenly'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 };
 

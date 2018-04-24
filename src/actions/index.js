@@ -104,9 +104,10 @@ export const onSearchTermChange = (searchTerm) => {
 }
 
 export const onTodosSearch = (searchTerm, todos) => {
-  
+    
     const filteredTodos = todos.filter(obj => {
-        return (obj.title.indexOf(searchTerm) !== -1) || (obj.text.indexOf(searchTerm) !== -1);
+    
+        return (obj.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) || (obj.text.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
     });
 
     return {

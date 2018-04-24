@@ -52,7 +52,7 @@ class TodoSearchForm extends Component {
                 <h3> Search and Filter Your Todos </h3>
                 <Input 
                     type="search"
-                    placeholder="Buy..."
+                    placeholder="Start typing to search"
                     onChange={this.onTodosSearch.bind(this)}
                     value={this.props.searchTerm}
                 />
