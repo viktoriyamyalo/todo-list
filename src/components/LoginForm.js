@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Input } from './Input';
 import { Button } from './Button';
-import { onEmailChange, onPasswordChange, onLogin, onSignup } from '../actions';
+import { 
+    onEmailChange, 
+    onPasswordChange, 
+    onLogin, 
+    onSignup, 
+    toggleLoginForm } from '../actions';
 import { connect } from 'react-redux';
 
 class LoginForm extends Component {
@@ -40,7 +45,7 @@ class LoginForm extends Component {
         return ReactDOM.createPortal(
             <div style={styles.containerStyle}>
                 <Button 
-                    onClick={this.props.onClose}
+                    onClick={this.props.toggleLoginForm}
                     buttonText="Close"
                     className="btn btn-link"
                     style={styles.closeButtonStyle}
@@ -111,9 +116,9 @@ const styles = {
 const mapStateToProps = (state) => {
     return {
         email: state.loginForm.email,
-        password: state.loginForm.password
+        password: state.loginForm.password,
 
     }
 }
 
-export default connect(mapStateToProps, { onEmailChange, onPasswordChange, onLogin, onSignup })(LoginForm);
+export default connect(mapStateToProps, { onEmailChange, onPasswordChange, onLogin, onSignup, toggleLoginForm })(LoginForm);

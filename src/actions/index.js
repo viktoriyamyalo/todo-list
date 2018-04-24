@@ -13,7 +13,8 @@ import {
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
     TODO_CREATE_FAIL,
-    TODOS_FETCH_START
+    TODOS_FETCH_START,
+    TOGGLE_LOGIN_FORM
     } from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
@@ -154,5 +155,11 @@ export const onSignup = (email, password) => {
     return {
         type: SIGNUP_SUCCESS,
         payload: {email, password}
+    }
+}
+
+export const toggleLoginForm = () => {
+    return {
+        type: TOGGLE_LOGIN_FORM
     }
 }
