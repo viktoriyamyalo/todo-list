@@ -25,6 +25,7 @@ class TodoCreateForm extends Component {
     render() {
         return (
             <div style={styles.containerStyle}>
+                    <h3> Create Todo </h3>
                     <Input
                         type="text"
                         placeholder="Buy milk"
@@ -38,6 +39,8 @@ class TodoCreateForm extends Component {
                         onChange={this.onTextChange.bind(this)}
                         value={this.props.text}
                     />
+
+                    <p style={styles.errorStyle}>{this.props.error}</p>
 
                     <Button
                         buttonText="Create Todo"
@@ -53,16 +56,21 @@ class TodoCreateForm extends Component {
 const mapStateToProps = (state) => {
     return {
         title: state.todoCreateForm.title,
-        text: state.todoCreateForm.text
+        text: state.todoCreateForm.text,
+        error: state.todoCreateForm.error
     }
 }
 
 const styles = {
     containerStyle: {
-        // display: 'flex'
+        marginTop: 20
     },
     buttonStyle: {
         marginTop: 20,
+    },
+    errorStyle: {
+        fontSize: 18,
+        color: 'tomato'
     }
 }
 

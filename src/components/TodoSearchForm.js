@@ -48,7 +48,8 @@ class TodoSearchForm extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.containerStyle}>
+                <h3> Search and Filter Your Todos </h3>
                 <Input 
                     type="search"
                     placeholder="Buy..."
@@ -69,9 +70,12 @@ const mapStateToProps = (state) => {
 }
 
 const styles = {
-    buttonStyle: {
+    containerStyle: {
         marginTop: 20
+    },
+    buttonStyle: {
+        marginTop: 20,
     }
-};
+}
 
 export default connect(mapStateToProps, { onTodosSearch, onSearchTermChange, onToggleComplete })(TodoSearchForm);

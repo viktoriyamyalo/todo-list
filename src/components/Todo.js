@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchTodo } from '../actions';
 import { connect } from 'react-redux';
-import { Header } from './Header';
+import Header from './Header';
 import { Link } from 'react-router-dom';
 
 class Todo extends Component {

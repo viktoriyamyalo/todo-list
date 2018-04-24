@@ -10,6 +10,7 @@ export const Input = (props) => {
                 className="form-control"
                 onChange={props.onChange}
                 value={props.value}
+                style={props.style}
             />
         </div>
     );

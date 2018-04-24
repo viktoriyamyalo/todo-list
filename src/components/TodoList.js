@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTodos } from '../actions';
-import _ from 'lodash';
 import TodoListItem from './TodoListItem';
 
 class TodoList extends Component {
@@ -10,7 +9,19 @@ class TodoList extends Component {
     }
 
     renderTodos() {
-        const { todos, filteredTodos, toggleComplete } = this.props;
+        const { todos, filteredTodos, toggleComplete, searchTerm, loading } = this.props;
+
+        if(loading) {
+            return (
+                <p style={styles.infoStyle}>Loading...</p>
+            );
+        }
+
+        if(searchTerm && filteredTodos.length === 0) {
+            return (
+                <p style={styles.infoStyle}>Sorry, no todos match your search</p>
+            );
+        }
         
         if(filteredTodos.length > 0) {
 
@@ -26,8 +37,7 @@ class TodoList extends Component {
                 return <TodoListItem key={todo.uid} todo={todo} />
                     
             });
-        }
-        if(todos.length > 0) {
+        } else if(todos.length > 0) {
 
             if( toggleComplete ) {
                 return todos.filter(obj => {
@@ -42,7 +52,7 @@ class TodoList extends Component {
                     
             });
         }
-        return <p>Please start creating todos</p>;
+        return <p style={styles.infoStyle}>Please start creating todos</p>;
     }
 
     render() {
@@ -60,7 +70,9 @@ const mapStateToProps = (state) => {
     return { 
         todos: state.todos.todos,
         filteredTodos: state.todos.filteredTodos,
-        toggleComplete: state.todoSearchForm.toggleComplete      
+        toggleComplete: state.todoSearchForm.toggleComplete,
+        searchTerm: state.todoSearchForm.searchTerm,
+        loading: state.todos.loading      
     };
 };
 
@@ -70,6 +82,10 @@ const mapStateToProps = (state) => {
          justifyContent: 'flex-start',
          alignItems: 'center',
          flexWrap: 'wrap'
+     },
+     infoStyle: {
+         margin: 'auto',
+         fontSize: 18
      }
  }
 

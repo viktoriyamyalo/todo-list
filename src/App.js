@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -12,10 +10,20 @@ import reducers from './reducers';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
 import Todo from './components/Todo';
+import LoginForm from './components/LoginForm';
+import { Button } from './components/Button';
 
 const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
 
 class App extends Component {
+
+  state = {
+    isLoginFormOpen: false
+  };
+
+  toggleLoginForm = () => {
+    this.setState(state => ({isLoginFormOpen: !state.isLoginFormOpen}));
+  };
 
   componentWillMount() {
     const config = {
@@ -36,10 +44,27 @@ class App extends Component {
           <div>
             <Route exact path="/" component={Dashboard} />
             <Route path="/todos/:uid" component={Todo} />
+            <Button 
+              onClick={this.toggleLoginForm.bind(this)}
+              buttonText="Log In/Sign Up"
+              className="btn btn-light"
+              style={styles.buttonStyle}
+              />
+          
+            { this.state.isLoginFormOpen && <LoginForm onClose={this.toggleLoginForm} />}
           </div>
         </Router>
       </Provider>
     );
+  }
+}
+
+const styles = {
+  buttonStyle: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 2
   }
 }
 
