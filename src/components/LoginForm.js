@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Input } from './Input';
 import { Button } from './Button';
 import { 
-    onEmailChange, 
+    onUsernameChange, 
     onPasswordChange, 
     onLogin, 
     onSignup, 
@@ -21,9 +21,9 @@ class LoginForm extends Component {
         document.body.removeChild(this.root);
     }
 
-    onEmailChange(event) {
-        const email = event.target.value;
-        this.props.onEmailChange(email);
+    onUsernameChange(event) {
+        const username = event.target.value;
+        this.props.onUsernameChange(username);
     }
 
     onPasswordChange(event) {
@@ -32,55 +32,65 @@ class LoginForm extends Component {
     }
 
     onLogin() {
-        const { email, password } = this.props;
-        this.props.onLogin(email, password);
+        const { username, password } = this.props;
+        this.props.onLogin(username, password);
     }
 
     onSignup() {
-        const { email, password } = this.props;
-        this.props.onSignup(email, password);
+        const { username, password } = this.props;
+        this.props.onSignup(username, password);
     }
 
     render() {
         return ReactDOM.createPortal(
             <div style={styles.containerStyle}>
-                <Button 
-                    onClick={this.props.toggleLoginForm}
-                    buttonText="Close"
-                    className="btn btn-link"
-                    style={styles.closeButtonStyle}
-                />
+                <div style={styles.formStyle}>
+                    <Button 
+                        onClick={this.props.toggleLoginForm}
+                        buttonText="Close"
+                        className="btn btn-link"
+                        style={styles.closeButtonStyle}
+                    />
 
-                <Input
-                    type="email"
-                    placeholder="janedoe@gmail.com"
-                    onChange={this.onEmailChange.bind(this)}
-                    value={this.props.email}
-                    style={styles.inputStyle}
-                />
+                    <h3> Log In or Sign Up! </h3>
 
-                <Input
-                    type="password"
-                    placeholder="password"
-                    onChange={this.onPasswordChange.bind(this)}
-                    value={this.props.password}
-                    style={styles.inputStyle}
-                />
+                    <Input
+                        type="text"
+                        placeholder="jane_doe"
+                        onChange={this.onUsernameChange.bind(this)}
+                        value={this.props.username}
+                        style={styles.inputStyle}
+                    />
 
-                <Button 
-                    onClick={this.onLogin.bind(this)}
-                    buttonText="Log In"
-                    className="btn btn-success"
-                    style={styles.buttonStyle}
-                />
+                    <Input
+                        type="password"
+                        placeholder="password"
+                        onChange={this.onPasswordChange.bind(this)}
+                        value={this.props.password}
+                        style={styles.inputStyle}
+                    />
 
-                <Button 
-                    onClick={this.onSignup.bind(this)}
-                    buttonText="Sign Up"
-                    className="btn btn-default"
-                    style={styles.buttonStyle}
-                />
+                    {this.props.error && <p style={styles.errorStyle}>{this.props.error}</p>}
 
+                        <div>
+
+                            <Button 
+                                onClick={this.onLogin.bind(this)}
+                                buttonText="Log In"
+                                className="btn btn-success"
+                                style={styles.buttonStyle}
+                            />
+
+                            <Button 
+                                onClick={this.onSignup.bind(this)}
+                                buttonText="Sign Up"
+                                className="btn btn-default"
+                                style={styles.buttonStyle}
+                            />
+
+                        </div>
+
+                    </div>
             </div>,
             this.root);
     }
@@ -90,35 +100,51 @@ const styles = {
     containerStyle: {
         position: 'absolute',
         backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        top: 10,
-        bottom: 10,
-        right: 10,
-        left: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
         zIndex: 2
     },
     closeButtonStyle: {
-        color: 'white',
         position: 'absolute',
-        right: 5,
-        top: 5
+        top: 5,
+        right: 5
     },
     inputStyle: {
         marginTop: 20,
-        marginLeft: 10,
         maxWidth: 500              
     },
     buttonStyle: {
         marginTop: 20,
         marginLeft: 5
+    },
+    formStyle: {
+        width: 400,
+        height: 400,
+        backgroundColor: 'white',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    errorStyle: {
+        fontSize: 18,
+        color: 'red'
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        email: state.loginForm.email,
+        username: state.loginForm.username,
         password: state.loginForm.password,
+        error: state.loginForm.error
 
     }
 }
 
-export default connect(mapStateToProps, { onEmailChange, onPasswordChange, onLogin, onSignup, toggleLoginForm })(LoginForm);
+export default connect(mapStateToProps, { onUsernameChange, onPasswordChange, onLogin, onSignup, toggleLoginForm })(LoginForm);

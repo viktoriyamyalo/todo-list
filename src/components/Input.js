@@ -5,7 +5,7 @@ export const Input = (props) => {
         <div>
             <label>{props.label}</label>
             <input 
-                type={props.tyle}
+                type={props.type}
                 placeholder={props.placeholder}
                 className="form-control"
                 onChange={props.onChange}

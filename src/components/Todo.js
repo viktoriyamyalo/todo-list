@@ -28,14 +28,13 @@ class Todo extends Component {
         const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
 
         return (
-            <div className="card" style={{backgroundColor, marginLeft: 20, marginTop: 20, padding: 5, maxWidth: 250}}>
-            <div className="card-body">
-               
-                    <h3>{title}</h3>
-                    {this.renderLabel()}
+            <div className="card" style={{...styles.cardStyle, backgroundColor}}>
+                    <div>
+                            <h3>{title}</h3>
+                            {this.renderLabel()}
+                    </div>
                     <p>{text}</p>
                     {this.renderButton()}                    
-          </div>
         </div>
         );
     }
@@ -73,20 +72,37 @@ class Todo extends Component {
 
     render() {
         return(
-            <div className="card">
-                <div className="card-body">
-                    <Header />
-                    <Link to={'/'}>Go back</Link>
-                    {this.renderTodo()}
-                </div>
+            <div>
+                <Header />
+                <Link to={'/'}>Go back</Link>
+                    <div style={styles.containerStyle}>
+                            {this.renderTodo()}
+                    </div>
             </div>
         );
     }
 }
 
+
+
 const mapStateToProps = (state) => {
     return { todo: state.todos.currentTodo }
 }
 
+const styles = {
+    containerStyle: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    cardStyle: {
+        padding: 5,
+        width: 200,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    }
+}
 
 export default connect(mapStateToProps, { fetchTodo, onTodoStatusChange })(Todo);

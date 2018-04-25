@@ -7,14 +7,15 @@ import {
     SEARCH_TERM_CHANGE, 
     TODOS_SEARCH,
     TOGGLE_COMPLETE,
-    EMAIL_CHANGE,
+    USERNAME_CHANGE,
     PASSWORD_CHANGE,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
     TODO_CREATE_FAIL,
     TODOS_FETCH_START,
-    TOGGLE_LOGIN_FORM
+    TOGGLE_LOGIN_FORM,
+    SIGNUP_FAIL
     } from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
@@ -123,10 +124,10 @@ export const onToggleComplete = (boolean) => {
     }
 }
 
-export const onEmailChange = (email) => {
+export const onUsernameChange = (username) => {
     return {
-        type: EMAIL_CHANGE,
-        payload: email
+        type: USERNAME_CHANGE,
+        payload: username
     }
 }
 
@@ -137,12 +138,37 @@ export const onPasswordChange = (password) => {
     }
 }
 
-export const onLogin = (email, password) => {
+export const onLogin = (username, password) => {
     
-    if(window.localStorage.getItem(email) && window.localStorage.getItem(email) === password) {
+    if(!username || !password) {
+        const error = "Please fill out all the fields";
+        return {
+            type: LOGIN_FAIL,
+            payload: error
+        }
+    }
+
+    if(!window.localStorage.getItem(username)) {
+        const error = "User doesn't exist, please sign up first";
+        return {
+            type: LOGIN_FAIL,
+            payload: error
+        }
+    }
+
+    if(window.localStorage.getItem(username) !== password) {
+        const error = "Sorry, incorrect password";
+        return {
+            type: LOGIN_FAIL,
+            payload: error
+        }
+
+    }
+    
+    if(window.localStorage.getItem(username) && window.localStorage.getItem(username) === password) {
         return {
         type: LOGIN_SUCCESS,
-        payload: {email, password}
+        payload: {username, password}
         }
     } else {
         return {
@@ -151,11 +177,43 @@ export const onLogin = (email, password) => {
     }
 }
 
-export const onSignup = (email, password) => {
-    window.localStorage.setItem(email, password);
+export const onSignup = (username, password) => {
+
+    if(!username || !password) {
+        const error = "Please fill out all the fields";
+        return {
+            type: SIGNUP_FAIL,
+            payload: error
+        }
+    } else if( password.length < 8) {
+        const error = "Please choose a longer password";
+        return {
+            type: SIGNUP_FAIL,
+            payload: error
+        }
+    }
+
+    if(window.localStorage.getItem(username) && window.localStorage.getItem(username) === password) {
+        const error = "User already exists, please log in instead"
+        return {
+            type: SIGNUP_FAIL,
+            payload: error        
+        }
+    }
+
+    if(window.localStorage.getItem(username) && window.localStorage.getItem(username) !== password) {
+        const error = "This username is already taken";
+        return {
+            type: SIGNUP_FAIL,
+            payload: error
+        }
+    }
+
+    window.localStorage.setItem(username, password);
+    
     return {
         type: SIGNUP_SUCCESS,
-        payload: {email, password}
+        payload: {username, password}
     }
 }
 
