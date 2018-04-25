@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input } from './Input';
-import { Button } from './Button';
+import { bindActionCreators } from 'redux';
+
 import { 
         onSearchTermChange, 
         onTodosSearch,
@@ -26,22 +26,20 @@ class TodoSearchForm extends Component {
     renderButton() {
         if(this.props.toggleComplete) {
             return (
-                <Button 
-                    buttonText="Show All"
+                <button
                     onClick={this.onToggleComplete.bind(this)}
                     className="btn btn-outline-primary"
                     style={styles.buttonStyle}
-                />
+                >Show All</button>
             );
         }
 
         return (
-                <Button  
-                    buttonText="Hide Completed"
+                <button  
                     onClick={this.onToggleComplete.bind(this)}
                     className="btn btn-outline-primary"
                     style={styles.buttonStyle}
-                />
+                >Hide Completed</button>
             );
 
     }
@@ -50,11 +48,12 @@ class TodoSearchForm extends Component {
         return (
             <div style={styles.containerStyle}>
                 <h3> Search and Filter Your Todos </h3>
-                <Input 
+                <input 
                     type="search"
                     placeholder="Start typing to search"
                     onChange={this.onTodosSearch.bind(this)}
                     value={this.props.searchTerm}
+                    className="form-control"
                 />
                 {this.renderButton()}
             </div>
@@ -78,4 +77,12 @@ const styles = {
     }
 }
 
-export default connect(mapStateToProps, { onTodosSearch, onSearchTermChange, onToggleComplete })(TodoSearchForm);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        onTodosSearch,
+        onSearchTermChange, 
+        onToggleComplete
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoSearchForm);

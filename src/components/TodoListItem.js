@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from './Button';
 import { connect } from 'react-redux';
-import { onTodoStatusChange } from '../actions';
 import { Link } from 'react-router-dom';
+
+import { onTodoStatusChange } from '../actions';
+
 
 class TodoListItem extends Component {
 
@@ -13,20 +14,19 @@ class TodoListItem extends Component {
     renderButton() {
         if(this.props.todo.completed) {
             return (
-                <Button
+                <button
                     onClick={this.onTodoStatusChange.bind(this)}
-                    buttonText="Mark as incomplete"
                     className="btn btn-danger"
-                />
+                >Mark as incomplete</button>
             );
         }
 
         return (
-            <Button
+            <button
                 onClick={this.onTodoStatusChange.bind(this)}
                 buttonText="Mark as completed"
                 className="btn btn-success"
-                />
+                >Mark as completed</button>
         );
     }
 
@@ -61,6 +61,5 @@ class TodoListItem extends Component {
         );
     }
 }
-
 
 export default connect(null, { onTodoStatusChange })(TodoListItem);

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Image } from './Image';
-import Avatar from '/home/user/todo-list/src/user_avatar.png';
 import { connect } from 'react-redux';
-import { Button } from './Button';
+
 import { toggleLoginForm } from '../actions';
 import TiKeyOutline from 'react-icons/lib/ti/key-outline';
 
 class Header extends Component {
     render() {
+        const src = "https://www.shareicon.net/data/128x128/2016/05/26/771186_people_512x512.png";
         return (
         <nav className="navbar navbar-expand-sm bg-primary navbar-darkt" style={styles.containerStyle}>
             <div style={styles.containerStyle}>
-                <Image
-                    src={Avatar}
+                <img
+                    src={src}
                     alt="User Avatar"
                     style={styles.imageStyle}
                 />
@@ -21,12 +20,11 @@ class Header extends Component {
             { !this.props.user && 
                 <div>
                     <TiKeyOutline style={{fontSize: 20}}/>
-                    <Button
+                    <button
                         onClick={this.props.toggleLoginForm}
-                        buttonText="Log In/Sign Up"
                         className="btn btn-link"
                         style={styles.buttonStyle}
-                    />
+                    >Log In/Sign Up</button>
                 </div>
             }
           
@@ -64,5 +62,6 @@ const mapStateToProps = (state) => {
         user: state.loginForm.user
     }
 };
+
 
 export default connect(mapStateToProps, { toggleLoginForm })(Header);

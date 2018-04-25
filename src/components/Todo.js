@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { fetchTodo, onTodoStatusChange } from '../actions';
 import { connect } from 'react-redux';
-import Header from './Header';
 import { Link } from 'react-router-dom';
-import { Button } from './Button';
+import { bindActionCreators } from 'redux';
+
+import { fetchTodo, onTodoStatusChange } from '../actions';
+import Header from './Header';
 
 class Todo extends Component {
 
@@ -29,12 +30,12 @@ class Todo extends Component {
 
         return (
             <div className="card" style={{...styles.cardStyle, backgroundColor}}>
-                    <div>
-                            <h3>{title}</h3>
-                            {this.renderLabel()}
-                    </div>
-                    <p>{text}</p>
-                    {this.renderButton()}                    
+                <div>
+                    <h3>{title}</h3>
+                    {this.renderLabel()}
+                </div>
+                <p>{text}</p>
+                {this.renderButton()}                    
         </div>
         );
     }
@@ -42,20 +43,18 @@ class Todo extends Component {
     renderButton() {
         if(this.props.todo.completed) {
             return (
-                <Button
+                <button
                     onClick={this.onTodoStatusChange.bind(this)}
-                    buttonText="Mark as incomplete"
                     className="btn btn-danger"
-                />
+                >Mark as incomplete</button>
             );
         }
 
         return (
-            <Button
+            <button
                 onClick={this.onTodoStatusChange.bind(this)}
-                buttonText="Mark as completed"
                 className="btn btn-success"
-                />
+                >Mark as completed</button>
         );
     }
 
@@ -105,4 +104,11 @@ const styles = {
     }
 }
 
-export default connect(mapStateToProps, { fetchTodo, onTodoStatusChange })(Todo);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        fetchTodo,
+        onTodoStatusChange
+    }, dispatch);
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);

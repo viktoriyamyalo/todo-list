@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Input } from './Input';
-import { Button } from './Button';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { 
     onUsernameChange, 
     onPasswordChange, 
     onLogin, 
     onSignup, 
     toggleLoginForm } from '../actions';
-import { connect } from 'react-redux';
+
 
 class LoginForm extends Component {
 
@@ -45,48 +46,47 @@ class LoginForm extends Component {
         return ReactDOM.createPortal(
             <div style={styles.containerStyle}>
                 <div style={styles.formStyle}>
-                    <Button 
+                    <button 
                         onClick={this.props.toggleLoginForm}
-                        buttonText="Close"
                         className="btn btn-link"
                         style={styles.closeButtonStyle}
-                    />
+                    >Close</button>
 
                     <h3> Log In or Sign Up! </h3>
 
-                    <Input
+                    <input
                         type="text"
                         placeholder="jane_doe"
                         onChange={this.onUsernameChange.bind(this)}
                         value={this.props.username}
                         style={styles.inputStyle}
+                        className="form-control"
                     />
 
-                    <Input
+                    <input
                         type="password"
                         placeholder="password"
                         onChange={this.onPasswordChange.bind(this)}
                         value={this.props.password}
                         style={styles.inputStyle}
+                        className="form-control"
                     />
 
                     {this.props.error && <p style={styles.errorStyle}>{this.props.error}</p>}
 
                         <div>
 
-                            <Button 
+                            <button
                                 onClick={this.onLogin.bind(this)}
-                                buttonText="Log In"
                                 className="btn btn-success"
                                 style={styles.buttonStyle}
-                            />
+                            >Log In</button>
 
-                            <Button 
+                            <button
                                 onClick={this.onSignup.bind(this)}
-                                buttonText="Sign Up"
                                 className="btn btn-default"
                                 style={styles.buttonStyle}
-                            />
+                            >Sign Up</button>
 
                         </div>
 
@@ -116,7 +116,7 @@ const styles = {
     },
     inputStyle: {
         marginTop: 20,
-        maxWidth: 500              
+        width: 250           
     },
     buttonStyle: {
         marginTop: 20,
@@ -147,4 +147,14 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { onUsernameChange, onPasswordChange, onLogin, onSignup, toggleLoginForm })(LoginForm);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        onUsernameChange,
+        onPasswordChange, 
+        onLogin, 
+        onSignup, 
+        toggleLoginForm
+    }, dispatch);
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

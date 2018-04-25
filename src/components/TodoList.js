@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { fetchTodos } from '../actions';
 import TodoListItem from './TodoListItem';
 
@@ -89,4 +91,10 @@ const mapStateToProps = (state) => {
      }
  }
 
-export default connect(mapStateToProps, { fetchTodos })(TodoList);
+ const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+      fetchTodos
+    }, dispatch);
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Input } from './Input';
-import { Button } from './Button';
-import { Textarea } from './Textarea';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { onTitleChange, onTextChange, onTodoCreate } from '../actions';
 
 class TodoCreateForm extends Component {
@@ -26,28 +25,31 @@ class TodoCreateForm extends Component {
         return (
             <div style={styles.containerStyle}>
                     <h3> Create Todo </h3>
-                    <Input
+                    <input
                         type="text"
                         placeholder="Shopping List"
                         onChange={this.onTitleChange.bind(this)}
                         value={this.props.title}
+                        className="form-control"
+                        style={styles.inputStyle}
                     />
 
-                    <Textarea
+                    <textarea
                         placeholder="1. a horse..."
                         rows="5"
                         onChange={this.onTextChange.bind(this)}
                         value={this.props.text}
-                    />
+                        className="form-control"
+                        style={styles.inputStyle}
+                    ></textarea>
 
                     <p style={styles.errorStyle}>{this.props.error}</p>
 
-                    <Button
-                        buttonText="Create Todo"
+                    <button
                         onClick={this.onTodoCreate.bind(this)}
                         className="btn btn-outline-success"
                         style={styles.buttonStyle}
-                    />
+                    >Create Todo</button>
             </div>
         );
     }
@@ -71,7 +73,18 @@ const styles = {
     errorStyle: {
         fontSize: 18,
         color: 'tomato'
+    },
+    inputStyle: {
+        marginTop: 10
     }
 }
 
-export default connect(mapStateToProps, { onTitleChange, onTextChange, onTodoCreate })(TodoCreateForm);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        onTitleChange,
+        onTextChange,
+        onTodoCreate
+    }, dispatch);
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoCreateForm);
