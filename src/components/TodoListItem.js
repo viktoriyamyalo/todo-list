@@ -24,7 +24,6 @@ class TodoListItem extends Component {
         return (
             <button
                 onClick={this.onTodoStatusChange.bind(this)}
-                buttonText="Mark as completed"
                 className="btn btn-success"
                 >Mark as completed</button>
         );

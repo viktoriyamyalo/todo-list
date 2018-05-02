@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import logProps from '../hoc/logProps';
 import { toggleLoginForm } from '../actions';
 import TiKeyOutline from 'react-icons/lib/ti/key-outline';
 
@@ -64,4 +65,5 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { toggleLoginForm })(Header);
+Header =  connect(mapStateToProps, { toggleLoginForm })(Header);
+export default logProps(Header);
