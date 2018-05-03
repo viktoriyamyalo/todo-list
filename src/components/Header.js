@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import logProps from '../hoc/logProps';
 import { toggleLoginForm } from '../actions';
@@ -18,6 +19,9 @@ class Header extends Component {
                 />
                 { this.props.user && <p style={styles.userInfoStyle}>Logged in as: {this.props.user.username}</p>}
             </div>
+            <Link to={`/subscription`} className="btn btn-primary">
+                Go Premium
+            </Link>
             { !this.props.user && 
                 <div>
                     <TiKeyOutline style={{fontSize: 20}}/>
@@ -26,6 +30,7 @@ class Header extends Component {
                         className="btn btn-link"
                         style={styles.buttonStyle}
                     >Log In/Sign Up</button>
+
                 </div>
             }
           

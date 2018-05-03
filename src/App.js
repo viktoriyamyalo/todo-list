@@ -10,6 +10,7 @@ import reducers from './reducers';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
+import Subscription from "./components/Subscription";
 
 
 const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
@@ -35,6 +36,7 @@ class App extends Component {
           <div>
             <Route exact path="/" component={Dashboard} />
             <Route path="/todos/:uid" component={Todo} />
+            <Route path="/subscription" component={Subscription} />
           </div>
         </Router>
       </Provider>
