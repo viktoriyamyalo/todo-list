@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
 import Subscription from "./components/Subscription";
 
+import './App.sass';
 
 const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
 
@@ -33,7 +34,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div className="App">
             <Route exact path="/" component={Dashboard} />
             <Route path="/todos/:uid" component={Todo} />
             <Route path="/subscription" component={Subscription} />

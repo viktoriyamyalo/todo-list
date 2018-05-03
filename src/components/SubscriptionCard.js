@@ -22,7 +22,7 @@ class SubscriptionCard extends Component {
                 </p>
                 
                 <div>
-                    <a href="#"></a>
+                    <a href="#">{this.props.button}</a>
                 </div>
 
             </div>

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "MONTHLY",
+    "price": "15",
+    "description": "Still undecided? Ease in with a monthly plan that can be canceled in ten seconds.",
+    "button": "START LEARNING"
+  },
+  {
+    "title": "YEARLY",
+    "price": "99",
+    "description": "This is your career we're talking about. Go all in, and save 20% off the monthly rate.",
+    "button": "START LEARNING"
+  },
+  {
+    "title": "FOREVER",
+    "price": "350",
+    "description": "We get it. Not everyone loves subscriptions. Pay once, and access Laracasts forever.",
+    "button": "START LEARNING"
+  },
+  {
+    "title": "TEAMS",
+    "price": "300",
+    "description": "Follow in the steps of thousands of companies who have elevated their teams to the next level.",
+    "button": "FOR MY DEVS"
+  }
+]

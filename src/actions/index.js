@@ -15,7 +15,8 @@ import {
     TODO_CREATE_FAIL,
     TODOS_FETCH_START,
     TOGGLE_LOGIN_FORM,
-    SIGNUP_FAIL
+    SIGNUP_FAIL,
+    FETCH_SUBSCRIPTION_PLANS_SUCCESS
     } from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
@@ -220,5 +221,22 @@ export const onSignup = (username, password) => {
 export const toggleLoginForm = () => {
     return {
         type: TOGGLE_LOGIN_FORM
+    }
+}
+
+export const fetchSubscriptionPlans = () => {
+    return(dispatch) => {
+        firebase.database().ref('/subscription')
+            .on('value', snapshot => {
+
+                const subscriptionPlans = _.map(snapshot.val(), (val, uid) => {
+                    return {...val, uid};
+                });
+
+                dispatch({
+                    type: FETCH_SUBSCRIPTION_PLANS_SUCCESS,
+                    payload: subscriptionPlans
+                });
+            });
     }
 }
