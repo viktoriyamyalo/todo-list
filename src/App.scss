@@ -3,20 +3,65 @@
 $primary-color: #FFFFFF;
 $plan-background: #F9F9F9;
 $plan-heading-color: #00AFB2;
-$button-focus-color: #EF6735;
+$plan-button-focus-color: #EF6735;
 
 $gray-light: #C7C7C7;
 $gray-dark: #4D545D;
+$green-blue: #00AFB2;
+$dark-blue: #2F5971;
 
-$break-phone: 420px;
+$break-phone: 680px;
 $break-tablet: 1024px;
 
 .App {
   background: $primary-color;
 }
 
+.header {
+  background: $green-blue;
+  min-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .header-buttons {
+    display: flex;
+    .header-button {
+      color: $dark-blue;
+      background: $green-blue;
+      border: 1px solid $dark-blue;
+      box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+      font-size: 15px;
+      font-weight: bold;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 2px;
+      margin-right: 10px;
+
+      &:hover {
+        color: $green-blue;
+        background: $dark-blue;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.forms {
+  justify-content: space-between;
+  align-items:flex-start;
+  padding: 25px;
+  .form-control {
+    margin: 15px 0px;
+  }
+}
+
 .container {
   display: flex;
+  max-width: 1024px;
   &.is-centered {
     justify-content: center;
     align-items: center;
@@ -25,12 +70,52 @@ $break-tablet: 1024px;
   &.is-vertical {
     flex-direction: column;
   }
+  &is-multiline {
+    flex-wrap: wrap;
+  }
 }
+
+.todos {
+  flex-wrap: wrap;
+  .todo {
+    display: flex;
+    flex: none;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+    margin: 10px;
+    padding: 40px 40px 50px;
+    position: relative;
+    .todo-title {
+      text-align: center;
+      h3 {
+        color: $dark-blue;
+        font-weight: lighter;
+      }
+      .badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+    .todo-title::after {
+      content: "";
+      background: $gray-light;
+      display: block;
+      height: 5px;
+      width: 35px;
+      border-radius: 20px;
+      margin: 10px auto;
+    }
+  }
+}
+
 
 .plans {
   display: flex;
   max-width: 1024px;
-  margin: auto;
   @media only screen and (max-width: $break-phone) {
     flex-direction: column;
   }
@@ -40,12 +125,16 @@ $break-tablet: 1024px;
 }
 
 .plan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: $plan-background;
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.1);
   margin: 10px;
   padding: 40px 40px 50px;
   @media only screen and (min-width: $break-phone) and (max-width: $break-tablet) {
-    width: 50%;
+    width: 40%;
     flex: none;
   }
   &.plan-2 {
@@ -53,6 +142,7 @@ $break-tablet: 1024px;
   }
   h3 {
     color: $plan-heading-color;
+    font-weight: lighter;
   }
   .plan-title::after {
     content: "";
@@ -66,6 +156,7 @@ $break-tablet: 1024px;
   .plan-price {
     font-size: 45px;
     color: $gray-dark;
+    display: flex;
     .dollar-sign {
       font-size: 25px;
       color: $gray-light;
@@ -76,10 +167,9 @@ $break-tablet: 1024px;
     text-align: center;
   }
   .plan-button {
-  //
 
     .button {
-      color: $button-focus-color;
+      color: $plan-button-focus-color;
       background: $plan-background;
       box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
       font-size: 12px;
@@ -88,13 +178,30 @@ $break-tablet: 1024px;
       text-decoration: none;
       border-radius: 2px;
 
-      &:hover, &:focus {
+      &:hover  {
         color: $plan-background;
-        background: $button-focus-color;
+        background: $plan-button-focus-color;
         text-decoration: none;
       }
     }
   }
 
 }
+
+.overlay {
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .login-form {
+    background: $primary-color;
+  }
+}
+
 

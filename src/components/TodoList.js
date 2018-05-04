@@ -15,13 +15,13 @@ class TodoList extends Component {
 
         if(loading) {
             return (
-                <p style={styles.infoStyle}>Loading...</p>
+                <p>Loading...</p>
             );
         }
 
         if(searchTerm && filteredTodos.length === 0) {
             return (
-                <p style={styles.infoStyle}>Sorry, no todos match your search</p>
+                <p>Sorry, no todos match your search</p>
             );
         }
         
@@ -54,13 +54,13 @@ class TodoList extends Component {
                     
             });
         }
-        return <p style={styles.infoStyle}>Please start creating todos</p>;
+        return <p>Please start creating todos</p>;
     }
 
     render() {
         
         return (
-            <div style={styles.containerStyle}>
+            <div className="container is-multiline todos">
                 {this.renderTodos()}
             </div>
         );
@@ -78,18 +78,6 @@ const mapStateToProps = (state) => {
     };
 };
 
- const styles = {
-     containerStyle: {
-         display: 'flex',
-         justifyContent: 'flex-start',
-         alignItems: 'center',
-         flexWrap: 'wrap'
-     },
-     infoStyle: {
-         margin: 'auto',
-         fontSize: 18
-     }
- }
 
  const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({

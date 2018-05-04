@@ -47,15 +47,20 @@ class TodoListItem extends Component {
         const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
 
         return (
-            <div className="card" style={{backgroundColor, marginLeft: 20, marginTop: 20, padding: 5}}>
-                <div className="card-body">
-                    <Link to={`/todos/${uid}`}>
-                        <h3>{title}</h3>
-                        {this.renderLabel()}
-                        <p>{text}</p>
-                    </Link> 
-                        {this.renderButton()}                    
-              </div>
+            <div className="todo">
+                <div className="todo-title">
+                    <h3>{title.toUpperCase()}</h3>
+                    {this.renderLabel()}
+                </div>
+
+                <p className="todo-text">
+                    {text}
+                </p>
+
+                <div className="todo-button">
+                    {this.renderButton()}
+                </div>
+
             </div>
         );
     }

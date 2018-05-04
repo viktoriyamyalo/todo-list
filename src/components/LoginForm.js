@@ -44,12 +44,11 @@ class LoginForm extends Component {
 
     render() {
         return ReactDOM.createPortal(
-            <div style={styles.containerStyle}>
-                <div style={styles.formStyle}>
+            <div className="overlay">
+                <div className="container is-centered is-vertical login-form">
                     <button 
                         onClick={this.props.toggleLoginForm}
                         className="btn btn-link"
-                        style={styles.closeButtonStyle}
                     >Close</button>
 
                     <h3> Log In or Sign Up! </h3>
@@ -59,7 +58,6 @@ class LoginForm extends Component {
                         placeholder="jane_doe"
                         onChange={this.onUsernameChange.bind(this)}
                         value={this.props.username}
-                        style={styles.inputStyle}
                         className="form-control"
                     />
 
@@ -68,24 +66,21 @@ class LoginForm extends Component {
                         placeholder="password"
                         onChange={this.onPasswordChange.bind(this)}
                         value={this.props.password}
-                        style={styles.inputStyle}
                         className="form-control"
                     />
 
-                    {this.props.error && <p style={styles.errorStyle}>{this.props.error}</p>}
+                    {this.props.error && <p>{this.props.error}</p>}
 
                         <div>
 
                             <button
                                 onClick={this.onLogin.bind(this)}
                                 className="btn btn-success"
-                                style={styles.buttonStyle}
                             >Log In</button>
 
                             <button
                                 onClick={this.onSignup.bind(this)}
                                 className="btn btn-default"
-                                style={styles.buttonStyle}
                             >Sign Up</button>
 
                         </div>
@@ -93,48 +88,6 @@ class LoginForm extends Component {
                     </div>
             </div>,
             this.root);
-    }
-}
-
-const styles = {
-    containerStyle: {
-        position: 'absolute',
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        zIndex: 2
-    },
-    closeButtonStyle: {
-        position: 'absolute',
-        top: 5,
-        right: 5
-    },
-    inputStyle: {
-        marginTop: 20,
-        width: 250           
-    },
-    buttonStyle: {
-        marginTop: 20,
-        marginLeft: 5
-    },
-    formStyle: {
-        width: 400,
-        height: 400,
-        backgroundColor: 'white',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    errorStyle: {
-        fontSize: 18,
-        color: 'red'
     }
 }
 

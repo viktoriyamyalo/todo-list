@@ -4,7 +4,10 @@ import { fetchSubscriptionPlans } from "../actions";
 import {bindActionCreators} from "redux";
 
 import subscriptions from '../subscriptions.json';
-import SubscriptionCard from "./SubscriptionCard";
+import SubscriptionCard from './SubscriptionCard';
+import Header from './Header';
+import LoginForm from './LoginForm';
+
 class Subscription extends Component {
 
     componentDidMount() {
@@ -18,7 +21,7 @@ class Subscription extends Component {
                             price={plan.price}
                             description={plan.description}
                             button={plan.button}
-                            className={`plan plan-${i+1} container is-centered is-vertical`}
+                            className={`plan plan-${i+1}`}
             />);
         });
     }
@@ -26,23 +29,31 @@ class Subscription extends Component {
     render() {
         return (
             <Fragment>
-                <header className="container is-centered is-vertical">
+                <Header />
+                <div className="container is-centered is-vertical">
                     <img src="https://laracasts.com/svg-loaders/hearts.svg" alt="hearts"/>
                     <h3>Choose a plan that fits your needs.</h3>
                     <p>Joining takes less than a minute, and, if your peers are correct, is a pretty dang good decision. If you're still on the fence, we have a plan called “monthly” - and it’s not like the gym. Seriously - you can cancel in five seconds, if this isn't for you.</p>
-                </header>
-                
-                <div className="plans">
+                </div>
+
+                <div className="plans container is-centered">
                     {this.renderSubscriptionCards()}
                 </div>
+
+                {this.props.isLoginFormOpen && <LoginForm />}
 
             </Fragment>
         );
     }
 }
 
+
+
+
 function mapStateToProps(state) {
-    return {};
+    return {
+        isLoginFormOpen: state.loginForm.isLoginFormOpen
+};
 }
 
 const mapDispatchToProps = (dispatch) => {

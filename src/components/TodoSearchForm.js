@@ -29,7 +29,6 @@ class TodoSearchForm extends Component {
                 <button
                     onClick={this.onToggleComplete.bind(this)}
                     className="btn btn-outline-primary"
-                    style={styles.buttonStyle}
                 >Show All</button>
             );
         }
@@ -38,7 +37,6 @@ class TodoSearchForm extends Component {
                 <button  
                     onClick={this.onToggleComplete.bind(this)}
                     className="btn btn-outline-primary"
-                    style={styles.buttonStyle}
                 >Hide Completed</button>
             );
 
@@ -46,7 +44,7 @@ class TodoSearchForm extends Component {
 
     render() {
         return (
-            <div style={styles.containerStyle}>
+            <div className="container is-centered is-vertical">
                 <h3> Search and Filter Your Todos </h3>
                 <input 
                     type="search"
@@ -68,14 +66,6 @@ const mapStateToProps = (state) => {
             toggleComplete: state.todoSearchForm.toggleComplete  };
 }
 
-const styles = {
-    containerStyle: {
-        marginTop: 20
-    },
-    buttonStyle: {
-        marginTop: 20,
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({

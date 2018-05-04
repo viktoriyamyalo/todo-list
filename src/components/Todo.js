@@ -29,14 +29,20 @@ class Todo extends Component {
         const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
 
         return (
-            <div className="card" style={{...styles.cardStyle, backgroundColor}}>
-                <div>
+            <div className={this.props.className}>
+                <div className="todo-title">
                     <h3>{title}</h3>
-                    {this.renderLabel()}
                 </div>
-                <p>{text}</p>
-                {this.renderButton()}                    
-        </div>
+
+                <p className="todo-text">
+                    {text}
+                </p>
+
+                <div className="todo-button">
+                    {this.renderButton()}
+                </div>
+
+            </div>
         );
     }
 
@@ -45,7 +51,7 @@ class Todo extends Component {
             return (
                 <button
                     onClick={this.onTodoStatusChange.bind(this)}
-                    className="btn btn-danger"
+                    className="button button-danger"
                 >Mark as incomplete</button>
             );
         }
@@ -53,7 +59,7 @@ class Todo extends Component {
         return (
             <button
                 onClick={this.onTodoStatusChange.bind(this)}
-                className="btn btn-success"
+                className="button button-success"
                 >Mark as completed</button>
         );
     }
@@ -74,7 +80,7 @@ class Todo extends Component {
             <div>
                 <Header />
                 <Link to={'/'}>Go back</Link>
-                    <div style={styles.containerStyle}>
+                    <div>
                             {this.renderTodo()}
                     </div>
             </div>
@@ -86,22 +92,6 @@ class Todo extends Component {
 
 const mapStateToProps = (state) => {
     return { todo: state.todos.currentTodo }
-}
-
-const styles = {
-    containerStyle: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    cardStyle: {
-        padding: 5,
-        width: 200,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    }
 }
 
 function mapDispatchToProps(dispatch) {

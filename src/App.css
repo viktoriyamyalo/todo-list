@@ -10,39 +10,111 @@ html, body {
 .App {
   background: #FFFFFF; }
 
+.header {
+  background: #00AFB2;
+  min-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px; }
+  .header .user-avatar {
+    width: 50px;
+    height: 50px; }
+  .header .header-buttons {
+    display: flex; }
+    .header .header-buttons .header-button {
+      color: #2F5971;
+      background: #00AFB2;
+      border: 1px solid #2F5971;
+      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+      font-size: 15px;
+      font-weight: bold;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 2px;
+      margin-right: 10px; }
+      .header .header-buttons .header-button:hover {
+        color: #00AFB2;
+        background: #2F5971;
+        text-decoration: none; }
+
+.forms {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 25px; }
+  .forms .form-control {
+    margin: 15px 0px; }
+
 .container {
-  display: flex; }
+  display: flex;
+  max-width: 1024px; }
   .container.is-centered {
     justify-content: center;
     align-items: center;
     text-align: center; }
   .container.is-vertical {
     flex-direction: column; }
+  .containeris-multiline {
+    flex-wrap: wrap; }
+
+.todos {
+  flex-wrap: wrap; }
+  .todos .todo {
+    display: flex;
+    flex: none;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    padding: 40px 40px 50px;
+    position: relative; }
+    .todos .todo .todo-title {
+      text-align: center; }
+      .todos .todo .todo-title h3 {
+        color: #2F5971;
+        font-weight: lighter; }
+      .todos .todo .todo-title .badge {
+        position: absolute;
+        top: 10px;
+        right: 10px; }
+    .todos .todo .todo-title::after {
+      content: "";
+      background: #C7C7C7;
+      display: block;
+      height: 5px;
+      width: 35px;
+      border-radius: 20px;
+      margin: 10px auto; }
 
 .plans {
   display: flex;
-  max-width: 1024px;
-  margin: auto; }
-  @media only screen and (max-width: 420px) {
+  max-width: 1024px; }
+  @media only screen and (max-width: 680px) {
     .plans {
       flex-direction: column; } }
-  @media only screen and (min-width: 420px) and (max-width: 1024px) {
+  @media only screen and (min-width: 680px) and (max-width: 1024px) {
     .plans {
       flex-wrap: wrap; } }
 
 .plan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: #F9F9F9;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
   margin: 10px;
   padding: 40px 40px 50px; }
-  @media only screen and (min-width: 420px) and (max-width: 1024px) {
+  @media only screen and (min-width: 680px) and (max-width: 1024px) {
     .plan {
-      width: 50%;
+      width: 40%;
       flex: none; } }
   .plan.plan-2 {
     align-self: flex-start; }
   .plan h3 {
-    color: #00AFB2; }
+    color: #00AFB2;
+    font-weight: lighter; }
   .plan .plan-title::after {
     content: "";
     background: #C7C7C7;
@@ -53,7 +125,8 @@ html, body {
     margin: 10px auto; }
   .plan .plan-price {
     font-size: 45px;
-    color: #4D545D; }
+    color: #4D545D;
+    display: flex; }
     .plan .plan-price .dollar-sign {
       font-size: 25px;
       color: #C7C7C7;
@@ -69,7 +142,20 @@ html, body {
     padding: 15px 25px;
     text-decoration: none;
     border-radius: 2px; }
-    .plan .plan-button .button:hover, .plan .plan-button .button:focus {
+    .plan .plan-button .button:hover {
       color: #F9F9F9;
       background: #EF6735;
       text-decoration: none; }
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  .overlay .login-form {
+    background: #FFFFFF; }

@@ -23,7 +23,7 @@ class TodoCreateForm extends Component {
 
     render() {
         return (
-            <div style={styles.containerStyle}>
+            <div className="container is-centered is-vertical">
                     <h3> Create Todo </h3>
                     <input
                         type="text"
@@ -31,7 +31,6 @@ class TodoCreateForm extends Component {
                         onChange={this.onTitleChange.bind(this)}
                         value={this.props.title}
                         className="form-control"
-                        style={styles.inputStyle}
                     />
 
                     <textarea
@@ -40,15 +39,13 @@ class TodoCreateForm extends Component {
                         onChange={this.onTextChange.bind(this)}
                         value={this.props.text}
                         className="form-control"
-                        style={styles.inputStyle}
                     ></textarea>
 
-                    <p style={styles.errorStyle}>{this.props.error}</p>
+                    <p>{this.props.error}</p>
 
                     <button
                         onClick={this.onTodoCreate.bind(this)}
                         className="btn btn-outline-success"
-                        style={styles.buttonStyle}
                     >Create Todo</button>
             </div>
         );
@@ -63,21 +60,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const styles = {
-    containerStyle: {
-        marginTop: 20
-    },
-    buttonStyle: {
-        marginTop: 20,
-    },
-    errorStyle: {
-        fontSize: 18,
-        color: 'tomato'
-    },
-    inputStyle: {
-        marginTop: 10
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { CardElement,
+import {
     CardNumberElement,
     CardExpiryElement,
     CardCVCElement
 } from 'react-stripe-elements';
 
-class CardSection extends React.Component {
+class CardSection extends Component {
     render() {
         return (
             <div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Header from './Header';
@@ -10,28 +10,21 @@ import TodoSearchForm from './TodoSearchForm';
 
 class Dashboard extends Component {
     render() {
-        console.log(this.props);
+
         return (
-            <div>
+            <Fragment>
                 <Header/>
-                <div style={styles.containerStyle}>
+                <div className="container forms">
                     <TodoCreateForm />
                     <TodoSearchForm />
                 </div>
                 <TodoList />
                 {this.props.isLoginFormOpen && <LoginForm />}
-            </div>
+            </Fragment>
         );
     }
 }
 
-const styles = {
-    containerStyle: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'flex-start'
-    }
-}
 
 const mapStateToProps = (state) => {
     return {

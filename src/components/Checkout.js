@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Elements } from 'react-stripe-elements';
 
-
+import PaymentRequestForm from './PaymentRequestForm';
 import CheckoutForm from './CheckoutForm';
+import Header from './Header';
 
 class Checkout extends Component {
 
 
     render() {
         return (
-            <Elements>
-                <CheckoutForm plan={this.props.match.params.plan} />
-            </Elements>
+                <Elements>
+                    <Fragment>
+                        <Header />
+                        <CheckoutForm plan={this.props.match.params.plan} />
+                        <PaymentRequestForm />
+                    </Fragment>
+                </Elements>
+
         );
     }
 }
