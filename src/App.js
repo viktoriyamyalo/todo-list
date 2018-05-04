@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {StripeProvider} from 'react-stripe-elements';
 
 import reducers from './reducers';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
 import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
 import Subscription from "./components/Subscription";
+import Checkout from './components/Checkout';
 
-import './App.sass';
+import './App.css';
 
 const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
 
@@ -32,15 +35,18 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/todos/:uid" component={Todo} />
-            <Route path="/subscription" component={Subscription} />
-          </div>
-        </Router>
-      </Provider>
+        <StripeProvider apiKey="pk_test_fNn2pnjQCd52Avn9r6gcBmyy">
+          <Provider store={store}>
+            <Router>
+              <div className="App">
+                <Route exact path="/" component={Dashboard} />
+                <Route path="/todos/:uid" component={Todo} />
+                <Route path="/subscription" component={Subscription} />
+                  <Route path="/checkout/:plan" component={Checkout} />
+              </div>
+            </Router>
+          </Provider>
+        </StripeProvider>
     );
   }
 }

@@ -31,7 +31,9 @@
     "jest": "20.0.4",
     "lodash": "^4.17.5",
     "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
     "object-assign": "4.1.1",
+    "payment": "^1.0.4",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
@@ -43,6 +45,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.4",
+    "react-stripe-elements": "^1.6.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
@@ -56,12 +59,14 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "node-sass": "^4.9.0",

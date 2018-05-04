@@ -1,3 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
 .App {
-  font: 100% Helvetica, sans-serif;
-  color: #d5d5d5; }
+  background: #FFFFFF; }
+
+.container {
+  display: flex; }
+  .container.is-centered {
+    justify-content: center;
+    align-items: center;
+    text-align: center; }
+  .container.is-vertical {
+    flex-direction: column; }
+
+.plans {
+  display: flex;
+  max-width: 1024px;
+  margin: auto; }
+  @media only screen and (max-width: 420px) {
+    .plans {
+      flex-direction: column; } }
+  @media only screen and (min-width: 420px) and (max-width: 1024px) {
+    .plans {
+      flex-wrap: wrap; } }
+
+.plan {
+  background: #F9F9F9;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 40px 40px 50px; }
+  @media only screen and (min-width: 420px) and (max-width: 1024px) {
+    .plan {
+      width: 50%;
+      flex: none; } }
+  .plan.plan-2 {
+    align-self: flex-start; }
+  .plan h3 {
+    color: #00AFB2; }
+  .plan .plan-title::after {
+    content: "";
+    background: #C7C7C7;
+    display: block;
+    height: 5px;
+    width: 35px;
+    border-radius: 20px;
+    margin: 10px auto; }
+  .plan .plan-price {
+    font-size: 45px;
+    color: #4D545D; }
+    .plan .plan-price .dollar-sign {
+      font-size: 25px;
+      color: #C7C7C7;
+      align-self: flex-start; }
+  .plan .plan-description {
+    text-align: center; }
+  .plan .plan-button .button {
+    color: #EF6735;
+    background: #F9F9F9;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 2px; }
+    .plan .plan-button .button:hover, .plan .plan-button .button:focus {
+      color: #F9F9F9;
+      background: #EF6735;
+      text-decoration: none; }
