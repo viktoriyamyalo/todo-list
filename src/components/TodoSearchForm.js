@@ -44,7 +44,7 @@ class TodoSearchForm extends Component {
 
     render() {
         return (
-            <div className="container is-centered is-vertical">
+            <div className="container is-centered is-vertical todo-search-form">
                 <h3> Search and Filter Your Todos </h3>
                 <input 
                     type="search"

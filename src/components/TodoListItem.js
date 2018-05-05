@@ -48,7 +48,16 @@ class TodoListItem extends Component {
 
     render() {
 
-        const { title, text, uid } = this.props.todo;
+        const { title, text, uid, created } = this.props.todo;
+
+        let displayCreated;
+
+        if(created) {
+            displayCreated = new Date(created);
+            displayCreated = displayCreated.toDateString();
+        } else {
+            displayCreated = '';
+        }
 
         return (
             <div className="todo">
@@ -56,6 +65,7 @@ class TodoListItem extends Component {
                     onClick={this.onDeleteTodo.bind(this)}
                     className={"button-close"}
                 >x</button>
+                <p>{displayCreated}</p>
                 <Link to={`/todos/${uid}`} className={"link link-invisible"}>
                     <div className="todo-title">
                         <h3>{title.toUpperCase()}</h3>

@@ -15,8 +15,7 @@ class Checkout extends Component {
         const plan = subscriptions.filter((plan) => {
             return plan.title.toLowerCase() === planTitle;
         })[0];
-        console.log(plan);
-        this.setState({plan}, () => console.log(this.state));
+        this.setState({plan});
     }
 
 

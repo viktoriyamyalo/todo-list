@@ -14,7 +14,7 @@ class Dashboard extends Component {
         return (
             <Fragment>
                 <Header/>
-                <div className="container forms">
+                <div className="forms">
                     <TodoCreateForm />
                     <TodoSearchForm />
                 </div>

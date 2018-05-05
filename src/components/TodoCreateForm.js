@@ -23,7 +23,7 @@ class TodoCreateForm extends Component {
 
     render() {
         return (
-            <div className="container is-centered is-vertical">
+            <div className="container is-centered is-vertical todo-create-form">
                     <h3> Create Todo </h3>
                     <input
                         type="text"

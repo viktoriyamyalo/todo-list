@@ -3,6 +3,7 @@ import { injectStripe } from 'react-stripe-elements';
 import { Link } from 'react-router-dom';
 
 import CardSection from './CardSection';
+import CheckoutButton from './CheckoutButton';
 
 class CheckoutForm extends Component {
 
@@ -11,18 +12,17 @@ class CheckoutForm extends Component {
         event.preventDefault();
 
 
-        this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+        this.props.stripe.createToken({name: 'Test Test'}).then(({token}) => {
             console.log('Received Stripe token:', token);
         });
 
-        // However, this line of code will do the same thing:
-        // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
     }
 
     render() {
+        const { price } = this.props.plan;
         return (
                 <Fragment>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className={"checkout"}>
                         <Link to="/subscription">
                             Back to choosing a plan
                         </Link>
@@ -30,19 +30,22 @@ class CheckoutForm extends Component {
                             Back to the main page
                         </Link>
                         <CardSection />
-                        <button>Confirm order</button>
+                        <button className={"checkout-button"}>Pay ${price}</button>
                     </form>
-                    <form action="your-server-side-code" method="POST">
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" className="stripe-button"
-                            data-key="pk_test_fNn2pnjQCd52Avn9r6gcBmyy"
-                            data-amount="999"
-                            data-name="Demo Site"
-                            data-description="Example charge"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                            data-locale="auto">
-                        </script>
-                    </form>
+                    {/*<form action="your-server-side-code" method="POST">*/}
+                        {/*<script*/}
+                            {/*src="https://checkout.stripe.com/checkout.js" className="stripe-button"*/}
+                            {/*data-key="pk_test_fNn2pnjQCd52Avn9r6gcBmyy"*/}
+                            {/*data-amount="999"*/}
+                            {/*data-name="Demo Site"*/}
+                            {/*data-description="Example charge"*/}
+                            {/*data-image="https://stripe.com/img/documentation/checkout/marketplace.png"*/}
+                            {/*data-locale="auto">*/}
+                        {/*</script>*/}
+                    {/*</form>*/}
+                    <CheckoutButton
+                        price={price}
+                    />
                 </Fragment>
         );
     }

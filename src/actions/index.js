@@ -59,9 +59,11 @@ export const onTodoCreate = (title, text) => {
     //             });
     //         });
     // }
+
+    const date = +new Date();
     return {
         type: TODO_CREATE,
-        payload: {title, text, completed: false}
+        payload: { title, text, completed: false, created: date}
     }
 }
 

@@ -15,13 +15,17 @@ class TodoList extends Component {
 
         if(loading) {
             return (
-                <p>Loading...</p>
+                <div className={"todos is-centered is-multiline"}>
+                    <p>Loading...</p>
+                </div>
             );
         }
 
         if(searchTerm && filteredTodos.length === 0) {
             return (
-                <p>Sorry, no todos match your search</p>
+                <div className={"todos is-centered is-multiline"}>
+                    <p>Sorry, no todos match your search</p>
+                </div>
             );
         }
         
@@ -54,13 +58,18 @@ class TodoList extends Component {
                     
             });
         }
-        return <p>Please start creating todos</p>;
+
+        return (
+            <div className={"todos is-centered is-multiline"}>
+                <p>Please start creating todos</p>
+            </div>
+        );
     }
 
     render() {
         
         return (
-            <div className="container is-multiline todos">
+            <div className="todos is-centered is-multiline ">
                 {this.renderTodos()}
             </div>
         );

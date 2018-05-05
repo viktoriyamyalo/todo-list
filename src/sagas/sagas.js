@@ -15,6 +15,8 @@ export function* createTodoAsync(action) {
         function createTodo(todo){
             return ref.push(todo);
         }
+
+        console.log(action.payload);
         yield call(createTodo, action.payload);
         yield put({
             type: TODO_CREATE_SUCCESS,
