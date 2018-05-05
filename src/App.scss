@@ -88,6 +88,20 @@ $break-tablet: 1024px;
     margin: 10px;
     padding: 40px 40px 50px;
     position: relative;
+    .button-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      position: absolute;
+      top: 0px;
+      right: 10px;
+    }
+    .link-invisible {
+      color: inherit;
+      &:hover {
+        text-decoration: none;
+      }
+    }
     .todo-title {
       text-align: center;
       h3 {
@@ -96,9 +110,10 @@ $break-tablet: 1024px;
       }
       .badge {
         position: absolute;
-        top: 10px;
+        bottom: 10px;
         right: 10px;
       }
+
     }
     .todo-title::after {
       content: "";
@@ -109,6 +124,7 @@ $break-tablet: 1024px;
       border-radius: 20px;
       margin: 10px auto;
     }
+
   }
 }
 
@@ -190,7 +206,7 @@ $break-tablet: 1024px;
 
 .overlay {
   background: rgba(0,0,0,0.5);
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,7 +217,65 @@ $break-tablet: 1024px;
 
   .login-form {
     background: $primary-color;
+    width: 40%;
+    height: 40%;
+    padding: 40px;
+    flex: none;
+    position: relative;
+    box-shadow: 0 12px 30px 0 rgba(0,0,0,.5), inset 0 1px 0 0 hsla(0,0%,100%,.65);
+
+    .button-close {
+      background: none;
+      border: none;
+      font-size: 25px;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+    }
+    .form-control {
+      margin: 10px 0;
+    }
+    .btn {
+      margin: 10px;
+    }
   }
 }
+
+.noscroll {
+  overflow: hidden;
+}
+
+.todo-standalone {
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  margin: 10px;
+  padding: 40px 40px 50px;
+  position: relative;
+  .todo-title {
+    text-align: center;
+    h3 {
+      color: $dark-blue;
+      font-weight: lighter;
+    }
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+  .todo-title::after {
+    content: "";
+    background: $gray-light;
+    display: block;
+    height: 5px;
+    width: 35px;
+    border-radius: 20px;
+    margin: 10px auto;
+  }
+}
+
 
 

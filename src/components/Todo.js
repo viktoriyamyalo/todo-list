@@ -29,9 +29,10 @@ class Todo extends Component {
         const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
 
         return (
-            <div className={this.props.className}>
+            <div className={"todo-standalone"}>
                 <div className="todo-title">
                     <h3>{title}</h3>
+                    {this.renderLabel()}
                 </div>
 
                 <p className="todo-text">
@@ -80,7 +81,7 @@ class Todo extends Component {
             <div>
                 <Header />
                 <Link to={'/'}>Go back</Link>
-                    <div>
+                    <div className={"container is-centered"}>
                             {this.renderTodo()}
                     </div>
             </div>

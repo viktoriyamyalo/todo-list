@@ -1,10 +1,9 @@
-import { 
-    TITLE_CHANGE, 
-    TEXT_CHANGE, 
-    TODOS_FETCH_SUCCESS, 
-    TODO_CREATE_SUCCESS, 
+import {
+    TITLE_CHANGE,
+    TEXT_CHANGE,
+    TODOS_FETCH_SUCCESS,
     TODO_FETCH_SUCCESS,
-    SEARCH_TERM_CHANGE, 
+    SEARCH_TERM_CHANGE,
     TODOS_SEARCH,
     TOGGLE_COMPLETE,
     USERNAME_CHANGE,
@@ -16,8 +15,10 @@ import {
     TODOS_FETCH_START,
     TOGGLE_LOGIN_FORM,
     SIGNUP_FAIL,
-    FETCH_SUBSCRIPTION_PLANS_SUCCESS
-    } from './types';
+    FETCH_SUBSCRIPTION_PLANS_SUCCESS,
+    TODO_CREATE,
+    DELETE_TODO
+} from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
 
@@ -49,14 +50,18 @@ export const onTodoCreate = (title, text) => {
             payload: error
         }
     }
-    return (dispatch) => {
-        firebase.database().ref('/todos')
-            .push({ title, text, completed: false })
-            .then(() => {
-                dispatch({
-                    type: TODO_CREATE_SUCCESS
-                });
-            });
+    // return (dispatch) => {
+    //     firebase.database().ref('/todos')
+    //         .push({ title, text, completed: false })
+    //         .then(() => {
+    //             dispatch({
+    //                 type: TODO_CREATE_SUCCESS
+    //             });
+    //         });
+    // }
+    return {
+        type: TODO_CREATE,
+        payload: {title, text, completed: false}
     }
 }
 
@@ -238,5 +243,12 @@ export const fetchSubscriptionPlans = () => {
                     payload: subscriptionPlans
                 });
             });
+    }
+}
+
+export const deleteTodo = (uid) => {
+    return {
+        type: DELETE_TODO,
+        payload: uid
     }
 }

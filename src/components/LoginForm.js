@@ -42,14 +42,19 @@ class LoginForm extends Component {
         this.props.onSignup(username, password);
     }
 
+    onToggleLoginForm() {
+        document.body.classList.remove('noscroll');
+        this.props.toggleLoginForm();
+    }
+
     render() {
         return ReactDOM.createPortal(
             <div className="overlay">
                 <div className="container is-centered is-vertical login-form">
                     <button 
-                        onClick={this.props.toggleLoginForm}
-                        className="btn btn-link"
-                    >Close</button>
+                        onClick={this.onToggleLoginForm.bind(this)}
+                        className="button-close"
+                    >x</button>
 
                     <h3> Log In or Sign Up! </h3>
 

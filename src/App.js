@@ -3,12 +3,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import firebase from 'firebase';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {StripeProvider} from 'react-stripe-elements';
 
 import reducers from './reducers';
-
+import rootSaga from './sagas/sagas';
 
 import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
@@ -17,7 +18,9 @@ import Checkout from './components/Checkout';
 
 import './App.css';
 
-const store = createStore(reducers, applyMiddleware(ReduxThunk,logger));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(ReduxThunk,logger, sagaMiddleware));
+sagaMiddleware.run(rootSaga);
 
 class App extends Component {
 
@@ -42,7 +45,7 @@ class App extends Component {
                 <Route exact path="/" component={Dashboard} />
                 <Route path="/todos/:uid" component={Todo} />
                 <Route path="/subscription" component={Subscription} />
-                  <Route path="/checkout/:plan" component={Checkout} />
+                  <Route path="/checkout/:planTitle" component={Checkout} />
               </div>
             </Router>
           </Provider>

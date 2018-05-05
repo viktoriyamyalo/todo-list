@@ -69,6 +69,17 @@ html, body {
     margin: 10px;
     padding: 40px 40px 50px;
     position: relative; }
+    .todos .todo .button-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      position: absolute;
+      top: 0px;
+      right: 10px; }
+    .todos .todo .link-invisible {
+      color: inherit; }
+      .todos .todo .link-invisible:hover {
+        text-decoration: none; }
     .todos .todo .todo-title {
       text-align: center; }
       .todos .todo .todo-title h3 {
@@ -76,7 +87,7 @@ html, body {
         font-weight: lighter; }
       .todos .todo .todo-title .badge {
         position: absolute;
-        top: 10px;
+        bottom: 10px;
         right: 10px; }
     .todos .todo .todo-title::after {
       content: "";
@@ -149,7 +160,7 @@ html, body {
 
 .overlay {
   background: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,4 +169,51 @@ html, body {
   left: 0;
   right: 0; }
   .overlay .login-form {
-    background: #FFFFFF; }
+    background: #FFFFFF;
+    width: 40%;
+    height: 40%;
+    padding: 40px;
+    flex: none;
+    position: relative;
+    box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.65); }
+    .overlay .login-form .button-close {
+      background: none;
+      border: none;
+      font-size: 25px;
+      position: absolute;
+      top: 5px;
+      right: 10px; }
+    .overlay .login-form .form-control {
+      margin: 10px 0; }
+    .overlay .login-form .btn {
+      margin: 10px; }
+
+.noscroll {
+  overflow: hidden; }
+
+.todo-standalone {
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  padding: 40px 40px 50px;
+  position: relative; }
+  .todo-standalone .todo-title {
+    text-align: center; }
+    .todo-standalone .todo-title h3 {
+      color: #2F5971;
+      font-weight: lighter; }
+    .todo-standalone .todo-title .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px; }
+  .todo-standalone .todo-title::after {
+    content: "";
+    background: #C7C7C7;
+    display: block;
+    height: 5px;
+    width: 35px;
+    border-radius: 20px;
+    margin: 10px auto; }

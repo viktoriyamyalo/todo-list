@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { onTodoStatusChange } from '../actions';
+import { onTodoStatusChange, deleteTodo } from '../actions';
 
 
 class TodoListItem extends Component {
@@ -40,6 +40,11 @@ class TodoListItem extends Component {
             );
     }
 
+    onDeleteTodo() {
+        const { uid } = this.props.todo;
+        this.props.deleteTodo(uid);
+    }
+
 
     render() {
 
@@ -48,22 +53,28 @@ class TodoListItem extends Component {
 
         return (
             <div className="todo">
-                <div className="todo-title">
-                    <h3>{title.toUpperCase()}</h3>
-                    {this.renderLabel()}
-                </div>
+                <button
+                    onClick={this.onDeleteTodo.bind(this)}
+                    className={"button-close"}
+                >x</button>
+                <Link to={`/todos/${uid}`} className={"link link-invisible"}>
+                    <div className="todo-title">
+                        <h3>{title.toUpperCase()}</h3>
+                        {this.renderLabel()}
+                    </div>
 
-                <p className="todo-text">
-                    {text}
-                </p>
+                    <p className="todo-text">
+                        {text}
+                    </p>
+                </Link>
 
                 <div className="todo-button">
-                    {this.renderButton()}
-                </div>
+                        {this.renderButton()}
+                        </div>
 
             </div>
         );
     }
 }
 
-export default connect(null, { onTodoStatusChange })(TodoListItem);
+export default connect(null, { onTodoStatusChange, deleteTodo })(TodoListItem);

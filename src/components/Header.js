@@ -7,6 +7,10 @@ import { toggleLoginForm } from '../actions';
 import TiKeyOutline from 'react-icons/lib/ti/key-outline';
 
 class Header extends Component {
+    onToggleLoginForm() {
+        document.body.classList.add('noscroll');
+        this.props.toggleLoginForm();
+    }
     render() {
         const src = "https://www.shareicon.net/data/128x128/2016/05/26/771186_people_512x512.png";
         return (
@@ -27,7 +31,7 @@ class Header extends Component {
                     <div>
 
                         <button
-                            onClick={this.props.toggleLoginForm}
+                            onClick={this.onToggleLoginForm.bind(this)}
                             className="header-button"
                         >
                             <TiKeyOutline className="icon"/>
