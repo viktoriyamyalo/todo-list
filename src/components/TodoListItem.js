@@ -48,8 +48,7 @@ class TodoListItem extends Component {
 
     render() {
 
-        const { title, text, completed, uid } = this.props.todo;
-        const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
+        const { title, text, uid } = this.props.todo;
 
         return (
             <div className="todo">

@@ -25,8 +25,7 @@ class Todo extends Component {
             );
         }
 
-        const { title, text, completed } = this.props.todo;
-        const backgroundColor = completed? "rgba(144,238,144, 0.5)" : "rgba(255,99,71, 0.5)";
+        const { title, text } = this.props.todo;
 
         return (
             <div className={"todo-standalone"}>

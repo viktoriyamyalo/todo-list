@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import {
     TODO_CREATE,
     TODO_CREATE_FAIL,
@@ -16,7 +15,7 @@ export function* createTodoAsync(action) {
         function createTodo(todo){
             return ref.push(todo);
         }
-        const response = yield call(createTodo, action.payload);
+        yield call(createTodo, action.payload);
         yield put({
             type: TODO_CREATE_SUCCESS,
             payload: action.payload });
@@ -39,7 +38,7 @@ export function* deleteTodoAsync(action) {
             const ref= firebase.database().ref(`todos/${uid}`);
             return ref.remove();
         }
-        const response = yield call(deleteTodo, action.payload)
+        yield call(deleteTodo, action.payload)
         yield put({
             type: TODO_DELETE_SUCCESS
         });
