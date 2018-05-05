@@ -7,6 +7,11 @@ import { toggleLoginForm } from '../actions';
 import TiKeyOutline from 'react-icons/lib/ti/key-outline';
 
 class Header extends Component {
+
+    componentWillMount() {
+        console.log(this.props.match);
+    }
+
     onToggleLoginForm() {
         document.body.classList.add('noscroll');
         this.props.toggleLoginForm();
@@ -24,9 +29,9 @@ class Header extends Component {
                 { this.props.user && <p>Logged in as: {this.props.user.username}</p>}
             </div>
             <div className="header-buttons">
-                <Link to={`/subscription`} className="header-button">
+                {this.path !== 'subscription' && this.path !== 'checkout' && <Link to={`/subscription`} className="header-button">
                     Go Premium
-                </Link>
+                </Link>}
                 { !this.props.user &&
                     <div>
 
