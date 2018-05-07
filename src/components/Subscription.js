@@ -31,10 +31,10 @@ class Subscription extends Component {
         return (
             <Fragment>
                 <Header />
-                <Link to={"/"}>
-                    Go back
-                </Link>
                 <div className="container is-centered is-vertical">
+                    <Link to={"/"} className={"link"}>
+                        Go back
+                    </Link>
                 <img src="https://laracasts.com/svg-loaders/hearts.svg" alt="hearts"/>
                     <h3>Choose a plan that fits your needs.</h3>
                     <p>Joining takes less than a minute, and, if your peers are correct, is a pretty dang good decision. If you're still on the fence, we have a plan called “monthly” - and it’s not like the gym. Seriously - you can cancel in five seconds, if this isn't for you.</p>

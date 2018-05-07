@@ -30,8 +30,8 @@ class Todo extends Component {
         return (
             <div className={"todo-standalone"}>
                 <div className="todo-title">
-                    <h3>{title}</h3>
-                    {this.renderLabel()}
+                    <h3>{title.toUpperCase()}</h3>
+
                 </div>
 
                 <p className="todo-text">
@@ -40,6 +40,7 @@ class Todo extends Component {
 
                 <div className="todo-button">
                     {this.renderButton()}
+                    {this.renderLabel()}
                 </div>
 
             </div>
@@ -51,7 +52,7 @@ class Todo extends Component {
             return (
                 <button
                     onClick={this.onTodoStatusChange.bind(this)}
-                    className="button button-danger"
+                    className="btn btn-danger"
                 >Mark as incomplete</button>
             );
         }
@@ -59,7 +60,7 @@ class Todo extends Component {
         return (
             <button
                 onClick={this.onTodoStatusChange.bind(this)}
-                className="button button-success"
+                className="btn btn-success"
                 >Mark as completed</button>
         );
     }
@@ -79,10 +80,12 @@ class Todo extends Component {
         return(
             <div>
                 <Header />
-                <Link to={'/'}>Go back</Link>
+                <div className="container is-centered is-vertical">
+                    <Link to={'/'} className={"link"}>Go back</Link>
                     <div className={"container is-centered"}>
-                            {this.renderTodo()}
+                        {this.renderTodo()}
                     </div>
+                </div>
             </div>
         );
     }

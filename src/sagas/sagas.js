@@ -30,7 +30,6 @@ export function* createTodoAsync(action) {
 }
 
 export function* watchCreateTodo() {
-    console.log('redux saga watchCreateTodo');
     yield takeEvery(TODO_CREATE, createTodoAsync);
 }
 

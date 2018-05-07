@@ -9,7 +9,7 @@ import TiKeyOutline from 'react-icons/lib/ti/key-outline';
 class Header extends Component {
 
     componentWillMount() {
-        console.log(this.props.match);
+        console.log(this.props);
     }
 
     onToggleLoginForm() {

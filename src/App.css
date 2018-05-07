@@ -31,7 +31,7 @@ html, body {
       padding: 15px 25px;
       text-decoration: none;
       border-radius: 2px;
-      margin-right: 10px; }
+      margin: 0 10px; }
       .header .header-buttons .header-button:hover {
         color: #00AFB2;
         background: #2F5971;
@@ -191,12 +191,16 @@ html, body {
   right: 0; }
   .overlay .login-form {
     background: #FFFFFF;
-    width: 40%;
-    height: 40%;
     padding: 40px;
     flex: none;
     position: relative;
-    box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.65); }
+    box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.65);
+    width: 500px;
+    height: 500px; }
+    @media only screen and (max-width: 680px) {
+      .overlay .login-form {
+        width: 90%;
+        height: 90%; } }
     .overlay .login-form .button-close {
       background: none;
       border: none;
@@ -226,10 +230,6 @@ html, body {
     .todo-standalone .todo-title h3 {
       color: #2F5971;
       font-weight: lighter; }
-    .todo-standalone .todo-title .badge {
-      position: absolute;
-      top: 10px;
-      right: 10px; }
   .todo-standalone .todo-title::after {
     content: "";
     background: #C7C7C7;
@@ -238,6 +238,10 @@ html, body {
     width: 35px;
     border-radius: 20px;
     margin: 10px auto; }
+  .todo-standalone .todo-button .badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px; }
 
 .checkout {
   display: flex;
@@ -279,3 +283,6 @@ html, body {
 
 .crossed-out {
   text-decoration: line-through; }
+
+.link {
+  margin: 20px; }
