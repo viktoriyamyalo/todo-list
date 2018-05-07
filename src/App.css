@@ -276,3 +276,6 @@ html, body {
         border: 1px solid #2F5971;
         min-width: 75px;
         border-radius: 3px; }
+
+.crossed-out {
+  text-decoration: line-through; }

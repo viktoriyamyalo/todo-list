@@ -32,17 +32,6 @@ class CheckoutForm extends Component {
                         <CardSection />
                         <button className={"checkout-button"}>Pay ${price}</button>
                     </form>
-                    {/*<form action="your-server-side-code" method="POST">*/}
-                        {/*<script*/}
-                            {/*src="https://checkout.stripe.com/checkout.js" className="stripe-button"*/}
-                            {/*data-key="pk_test_fNn2pnjQCd52Avn9r6gcBmyy"*/}
-                            {/*data-amount="999"*/}
-                            {/*data-name="Demo Site"*/}
-                            {/*data-description="Example charge"*/}
-                            {/*data-image="https://stripe.com/img/documentation/checkout/marketplace.png"*/}
-                            {/*data-locale="auto">*/}
-                        {/*</script>*/}
-                    {/*</form>*/}
                     <CheckoutButton
                         price={price}
                     />

@@ -1,15 +1,17 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import STRIPE_PUBLISHABLE from '../constants/stripe';
+// import curl from 'curl';
 
 export default class CheckoutButton extends React.Component {
     onToken = (token) => {
-        fetch('/save-stripe-token', {
+        console.log(JSON.stringify(token));
+        fetch('http://localhost:3004/posts', {
             method: 'POST',
             body: JSON.stringify(token),
         }).then(response => {
             response.json().then(data => {
-                alert(`We are in business, ${data.email}`);
+                alert(`We are in business`);
             });
         });
     }
@@ -33,7 +35,7 @@ export default class CheckoutButton extends React.Component {
         )
     }
 }
-//
+// What parameters to pass to StripeCheckout?
 // <StripeCheckout
 //     name="Three Comma Co." // the pop-in header title
 //     description="Big Data Stuff" // the pop-in header subtitle

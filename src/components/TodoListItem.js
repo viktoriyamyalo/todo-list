@@ -48,7 +48,7 @@ class TodoListItem extends Component {
 
     render() {
 
-        const { title, text, uid, created } = this.props.todo;
+        const { title, text, uid, created, completed } = this.props.todo;
 
         let displayCreated;
 
@@ -68,11 +68,11 @@ class TodoListItem extends Component {
                 <p>{displayCreated}</p>
                 <Link to={`/todos/${uid}`} className={"link link-invisible"}>
                     <div className="todo-title">
-                        <h3>{title.toUpperCase()}</h3>
+                        <h3 className={completed? "crossed-out": ""}>{title.toUpperCase()}</h3>
                         {this.renderLabel()}
                     </div>
 
-                    <p className="todo-text">
+                    <p className={completed? "todo-text crossed-out": "todo-text"}>
                         {text}
                     </p>
                 </Link>
