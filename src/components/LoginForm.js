@@ -56,7 +56,7 @@ class LoginForm extends Component {
                         className="button-close"
                     >x</button>
 
-                    <h3> Log In or Sign Up! </h3>
+                    <h3> Log In ddddor Sign Up! </h3>
 
                     <input
                         type="text"
