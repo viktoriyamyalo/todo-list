@@ -291,6 +291,10 @@ html, body {
   color: crimson;
   font-size: 18px; }
 
+.warning {
+  color: orange;
+  font-size: 18px; }
+
 /* *******************************************
 *			Todo Create Form styles
 ********************************************** */
@@ -310,6 +314,8 @@ html, body {
     .input-ctr input:focus + label, .input-ctr textarea:focus + label {
       top: 0px;
       font-size: 12px; }
+    .input-ctr input.input-error, .input-ctr textarea.input-error {
+      border: 1px solid crimson; }
   .input-ctr label {
     position: absolute;
     top: 25px;

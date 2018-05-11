@@ -365,6 +365,11 @@ $break-tablet: 1024px;
   font-size: 18px;
 }
 
+.warning {
+  color: orange;
+  font-size: 18px;
+}
+
 /* *******************************************
 *			Todo Create Form styles
 ********************************************** */
@@ -388,6 +393,12 @@ $break-tablet: 1024px;
       top: 0px;
       font-size: 12px;
     }
+    &.input-error {
+      border: 1px solid crimson;
+    }
+    //&.input-error::after {
+    //  content: 'dddd';
+    //}
   }
   label {
     position: absolute;
@@ -401,3 +412,4 @@ $break-tablet: 1024px;
     transition: 0.2s;
   }
 }
+

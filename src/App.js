@@ -15,7 +15,6 @@ import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
 import Subscription from "./components/Subscription";
 import Checkout from './components/Checkout';
-import ContactForm from './components/ContactForm';
 
 import './App.css';
 
@@ -47,7 +46,6 @@ class App extends Component {
                 <Route path="/todos/:uid" component={Todo} />
                 <Route path="/subscription" component={Subscription} />
                 <Route path="/checkout/:planTitle" component={Checkout} />
-                <Route path="/contact" component={ContactForm} />
               </div>
             </Router>
           </Provider>

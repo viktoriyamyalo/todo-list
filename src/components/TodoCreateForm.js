@@ -1,72 +1,112 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { onTodoCreate } from '../actions';
 
-import { onTitleChange, onTextChange, onTodoCreate } from '../actions';
+const validate = values => {
+    const errors = {}
+    if (!values.title) {
+        errors.title = 'Required';
+    } else if (values.title.length > 15) {
+        errors.username = 'Must be 15 characters or less';
+    }
+    if (!values.text) {
+        errors.text = 'Required';
+    }
+    return errors;
+}
+
+const warn = values => {
+    const warnings = {}
+    if (!values.text) {
+        warnings.text = 'Are you sure you want to create an empty todo?';
+    }
+    return warnings;
+}
+
+const renderField = ({
+                         input,
+                         placeholder,
+                         type,
+                         textarea,
+                         meta: { touched, error, warning, invalid }
+                     }) => {
+    const hasError = error && touched;
+    const textareaType = <textarea {...input}
+                                   placeholder={placeholder}
+                                   type={type}
+                                   className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+    const inputType = <input {...input}
+                             placeholder={placeholder}
+                             type={type}
+                             className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+
+    return (<div>
+                {textarea ? textareaType : inputType}
+                <div>
+                    {touched &&
+                    ((error && <p className="error">{error}</p>) ||
+                        (warning && <p className="warning">{warning}</p>))}
+                </div>
+             </div>);
+}
 
 class TodoCreateForm extends Component {
-
-    onTitleChange(event) {
-        const title = event.target.value;
-        this.props.onTitleChange(title);
+    onSubmit(values) {
+        this.props.onTodoCreate(values.title, values.text);
+        this.props.reset();
     }
 
-    onTextChange(event) {
-        const text = event.target.value;
-        this.props.onTextChange(text);
-    }
-
-    onTodoCreate() {
-        const { title, text } = this.props;
-        this.props.onTodoCreate(title, text);
-    }
 
     render() {
+        const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
             <div className="container is-centered is-vertical todo-create-form">
+                <form className="container is-centered is-vertical"
+                      onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <h3> Create Todo </h3>
-                    <input
-                        type="text"
-                        placeholder="Shopping List"
-                        onChange={this.onTitleChange.bind(this)}
-                        value={this.props.title}
-                        className="form-control"
-                    />
+                    <div className="input-ctr">
+                        <Field
+                            name="title"
+                            component={renderField}
+                            type="text"
+                            placeholder="Shopping list"
+                        />
+                    </div>
 
-                    <textarea
-                        placeholder="1. a horse..."
-                        rows="5"
-                        onChange={this.onTextChange.bind(this)}
-                        value={this.props.text}
-                        className="form-control"
-                    ></textarea>
+                    <div className="input-ctr">
+                        <Field
+                            name="text"
+                            component={renderField}
+                            textarea={true}
+                            rows="5"
+                            placeholder="1. A horse..."
+                        ></Field>
+                    </div>
 
-                    <p className="error">{this.props.error}</p>
 
-                    <button
-                        onClick={this.onTodoCreate.bind(this)}
-                        className="btn btn-outline-success"
-                    >Create Todo</button>
+                    <div className="container is-centered">
+                        <button
+                            className="btn btn-outline-success"
+                            disabled={ pristine || submitting }
+                        >Create Todo</button>
+                        <button className="btn btn-outline-danger" disabled={pristine || submitting} onClick={reset}>
+                            Clear Values
+                        </button>
+                    </div>
+                </form>
             </div>
+
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        title: state.todoCreateForm.title,
-        text: state.todoCreateForm.text,
-        error: state.todoCreateForm.error
-    }
-}
+TodoCreateForm = connect(null, { onTodoCreate })(TodoCreateForm);
 
+TodoCreateForm = reduxForm({
+    form: 'todoCreate',
+    validate,
+    warn
+})(TodoCreateForm);
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        onTitleChange,
-        onTextChange,
-        onTodoCreate
-    }, dispatch);
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoCreateForm);
+export default TodoCreateForm;
