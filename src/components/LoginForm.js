@@ -19,6 +19,7 @@ class LoginForm extends Component {
     }
 
     componentWillUnmount() {
+        document.body.classList.remove('noscroll');
         document.body.removeChild(this.root);
     }
 
@@ -74,7 +75,7 @@ class LoginForm extends Component {
                         className="form-control"
                     />
 
-                    {this.props.error && <p>{this.props.error}</p>}
+                    {this.props.error && <p className="error">{this.props.error}</p>}
 
                         <div>
 

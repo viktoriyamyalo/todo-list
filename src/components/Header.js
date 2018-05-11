@@ -26,7 +26,7 @@ class Header extends Component {
                     alt="User Avatar"
                     className="user-avatar"
                 />
-                { this.props.user && <p>Logged in as: {this.props.user.username}</p>}
+                { this.props.user && <div>Logged in as: {this.props.user.username}</div>}
             </div>
             <div className="header-buttons">
                 {this.path !== 'subscription' && this.path !== 'checkout' && <Link to={`/subscription`} className="header-button">

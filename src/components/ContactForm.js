@@ -1,39 +1,48 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Icon, Message, Input } from 'semantic-ui-react';
 
 class ContactForm extends Component {
     onSubmit(values) {
         console.log(values);
     }
 
-    locationInput({ input, meta: { touched, error }, ...custom}) {
-        const hasError = touched && error !== undefined;
-        return (
-          <div>
-              { hasError &&
-                <Message
-                  error
-                  header="Error"
-                  content={error} />}
-               <Input
-                  error={hasError}
-                  fluid
-                  placeholder="Location..."
-                  {...input}
-                  {...custom} />
-           </div>
-        );
-    }
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field name="location" component={this.locationInput} />
-                <br/>
-                <button type="submit">Submit</button>
-            </form>
+                <div className="container is-centered is-vertical todo-create-form">
+                    <form className="container is-centered is-vertical"
+                          onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                        <h3> Create Todo </h3>
+                        <div className="input-ctr">
+                            <Field
+                                name="title"
+                                component="input"
+                                type="text"
+                                placeholder="Shopping list"
+                            />
+                            <label htmlFor="title">Title</label>
+                        </div>
+
+                        <div className="input-ctr">
+                            <Field
+                                name="text"
+                                component="textarea"
+                                rows="5"
+                                placeholder="1. A horse..."
+                            ></Field>
+                            <label htmlFor="text">Text</label>
+                        </div>
+
+                        <p className="error">{this.props.error}</p>
+
+                        <button
+                            className="btn btn-outline-success"
+                            disabled={ pristine || submitting }
+                        >Create Todo</button>
+                    </form>
+                </div>
+
         );
     }
 }

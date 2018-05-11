@@ -359,3 +359,45 @@ $break-tablet: 1024px;
 .link {
   margin: 20px;
 }
+
+.error {
+  color: crimson;
+  font-size: 18px;
+}
+
+/* *******************************************
+*			Todo Create Form styles
+********************************************** */
+
+.input-ctr {
+  position: relative;
+  padding: 15px;
+  input, textarea {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    z-index: 2;
+    position: relative;
+    // background: transparent;
+    padding: 5px;
+    margin: 5px;
+    &:focus {
+      border: 2px solid #369AED;
+      outline: none;
+    }
+    &:focus + label {
+      top: 0px;
+      font-size: 12px;
+    }
+  }
+  label {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 1;
+    opacity: 1;
+    font-size: 16px;
+    color: #2d363f;
+    font-weight: normal;
+    transition: 0.2s;
+  }
+}

@@ -286,3 +286,37 @@ html, body {
 
 .link {
   margin: 20px; }
+
+.error {
+  color: crimson;
+  font-size: 18px; }
+
+/* *******************************************
+*			Todo Create Form styles
+********************************************** */
+.input-ctr {
+  position: relative;
+  padding: 15px; }
+  .input-ctr input, .input-ctr textarea {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    z-index: 2;
+    position: relative;
+    padding: 5px;
+    margin: 5px; }
+    .input-ctr input:focus, .input-ctr textarea:focus {
+      border: 2px solid #369AED;
+      outline: none; }
+    .input-ctr input:focus + label, .input-ctr textarea:focus + label {
+      top: 0px;
+      font-size: 12px; }
+  .input-ctr label {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 1;
+    opacity: 1;
+    font-size: 16px;
+    color: #2d363f;
+    font-weight: normal;
+    transition: 0.2s; }

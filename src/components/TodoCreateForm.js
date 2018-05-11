@@ -41,7 +41,7 @@ class TodoCreateForm extends Component {
                         className="form-control"
                     ></textarea>
 
-                    <p>{this.props.error}</p>
+                    <p className="error">{this.props.error}</p>
 
                     <button
                         onClick={this.onTodoCreate.bind(this)}
