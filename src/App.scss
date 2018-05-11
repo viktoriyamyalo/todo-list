@@ -52,9 +52,10 @@ $break-tablet: 1024px;
 
 .forms {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   padding: 25px;
+
   @media only screen and (max-width: $break-phone) {
     flex-wrap: wrap;
   }
@@ -62,12 +63,24 @@ $break-tablet: 1024px;
     margin: 15px 0px;
   }
   .todo-create-form, .todo-search-form {
+    width: 40%;
     @media only screen and (max-width: $break-phone) {
       width: 90%;
       flex: none;
       margin-bottom: 20px;
     }
   }
+}
+
+.is-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.is-vertical {
+  displaty: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -374,42 +387,49 @@ $break-tablet: 1024px;
 *			Todo Create Form styles
 ********************************************** */
 
-.input-ctr {
-  position: relative;
-  padding: 15px;
-  input, textarea {
+.todo-create-form {
+  form {
+    width: 100%;
+    input, textarea {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px;
+      width: 100%;
+      &:focus {
+        border: 2px solid #369AED;
+        outline: none;
+      }
+      &.input-error {
+        border: 1px solid crimson;
+      }
+    }
+    .btn {
+      margin-right: 10px;
+    }
+  }
+}
+
+
+
+/* *******************************************
+*			Todo Search Form styles
+********************************************** */
+
+
+.todo-search-form {
+  input {
     border: 1px solid #ccc;
     border-radius: 3px;
-    z-index: 2;
-    position: relative;
-    // background: transparent;
     padding: 5px;
     margin: 5px;
+    width: 100%;
     &:focus {
       border: 2px solid #369AED;
       outline: none;
     }
-    &:focus + label {
-      top: 0px;
-      font-size: 12px;
-    }
-    &.input-error {
-      border: 1px solid crimson;
-    }
-    //&.input-error::after {
-    //  content: 'dddd';
-    //}
   }
-  label {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 1;
-    opacity: 1;
-    font-size: 16px;
-    color: #2d363f;
-    font-weight: normal;
-    transition: 0.2s;
+  .btn {
+    margin: 10px;
   }
 }
-

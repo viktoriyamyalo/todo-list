@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 
 import { 
         onSearchTermChange, 
@@ -44,16 +45,18 @@ class TodoSearchForm extends Component {
 
     render() {
         return (
-            <div className="container is-centered is-vertical todo-search-form">
-                <h3> Search and Filter Your Todos </h3>
-                <input 
-                    type="search"
-                    placeholder="Start typing to search"
-                    onChange={this.onTodosSearch.bind(this)}
-                    value={this.props.searchTerm}
-                    className="form-control"
-                />
-                {this.renderButton()}
+            <div className="is-centered is-vertical todo-search-form">
+                    <h3> Search and Filter Your Todos </h3>
+                    <div>
+                        <Field
+                            name="searchField"
+                            component="input"
+                            type="text"
+                            placeholder="Start typing to search"
+                            onChange={this.onTodosSearch.bind(this)}
+                            />
+                    </div>
+                    {this.renderButton()}
             </div>
         );
     }
@@ -75,4 +78,7 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoSearchForm);
+TodoSearchForm = connect(mapStateToProps, mapDispatchToProps)(TodoSearchForm);
+export default reduxForm({
+    form: 'searchForm'
+})(TodoSearchForm);

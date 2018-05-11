@@ -29,17 +29,19 @@ const renderField = ({
                          placeholder,
                          type,
                          textarea,
+                         rows,
                          meta: { touched, error, warning, invalid }
                      }) => {
     const hasError = error && touched;
     const textareaType = <textarea {...input}
                                    placeholder={placeholder}
                                    type={type}
-                                   className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+                                   rows={rows}
+                                   className={` ${touched && invalid ? 'input-error' : ''}`}/>;
     const inputType = <input {...input}
                              placeholder={placeholder}
                              type={type}
-                             className={`form-control ${touched && invalid ? 'has-danger' : ''}`}/>;
+                             className={`${touched && invalid ? 'input-error' : ''}`}/>;
 
     return (<div>
                 {textarea ? textareaType : inputType}
@@ -61,9 +63,8 @@ class TodoCreateForm extends Component {
     render() {
         const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
-            <div className="container is-centered is-vertical todo-create-form">
-                <form className="container is-centered is-vertical"
-                      onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div className="is-centered is-vertical todo-create-form">
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <h3> Create Todo </h3>
                     <div className="input-ctr">
                         <Field
@@ -85,7 +86,7 @@ class TodoCreateForm extends Component {
                     </div>
 
 
-                    <div className="container is-centered">
+                    <div className="is-centered">
                         <button
                             className="btn btn-outline-success"
                             disabled={ pristine || submitting }
@@ -96,7 +97,6 @@ class TodoCreateForm extends Component {
                     </div>
                 </form>
             </div>
-
         );
     }
 }

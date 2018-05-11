@@ -39,7 +39,7 @@ html, body {
 
 .forms {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   padding: 25px; }
   @media only screen and (max-width: 680px) {
@@ -47,11 +47,23 @@ html, body {
       flex-wrap: wrap; } }
   .forms .form-control {
     margin: 15px 0px; }
-  @media only screen and (max-width: 680px) {
-    .forms .todo-create-form, .forms .todo-search-form {
-      width: 90%;
-      flex: none;
-      margin-bottom: 20px; } }
+  .forms .todo-create-form, .forms .todo-search-form {
+    width: 40%; }
+    @media only screen and (max-width: 680px) {
+      .forms .todo-create-form, .forms .todo-search-form {
+        width: 90%;
+        flex: none;
+        margin-bottom: 20px; } }
+
+.is-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+
+.is-vertical {
+  displaty: flex;
+  flex-direction: column; }
 
 .container {
   display: flex;
@@ -298,31 +310,34 @@ html, body {
 /* *******************************************
 *			Todo Create Form styles
 ********************************************** */
-.input-ctr {
-  position: relative;
-  padding: 15px; }
-  .input-ctr input, .input-ctr textarea {
+.todo-create-form form {
+  width: 100%; }
+  .todo-create-form form input, .todo-create-form form textarea {
     border: 1px solid #ccc;
     border-radius: 3px;
-    z-index: 2;
-    position: relative;
     padding: 5px;
-    margin: 5px; }
-    .input-ctr input:focus, .input-ctr textarea:focus {
+    margin: 5px;
+    width: 100%; }
+    .todo-create-form form input:focus, .todo-create-form form textarea:focus {
       border: 2px solid #369AED;
       outline: none; }
-    .input-ctr input:focus + label, .input-ctr textarea:focus + label {
-      top: 0px;
-      font-size: 12px; }
-    .input-ctr input.input-error, .input-ctr textarea.input-error {
+    .todo-create-form form input.input-error, .todo-create-form form textarea.input-error {
       border: 1px solid crimson; }
-  .input-ctr label {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 1;
-    opacity: 1;
-    font-size: 16px;
-    color: #2d363f;
-    font-weight: normal;
-    transition: 0.2s; }
+  .todo-create-form form .btn {
+    margin-right: 10px; }
+
+/* *******************************************
+*			Todo Search Form styles
+********************************************** */
+.todo-search-form input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  width: 100%; }
+  .todo-search-form input:focus {
+    border: 2px solid #369AED;
+    outline: none; }
+
+.todo-search-form .btn {
+  margin: 10px; }

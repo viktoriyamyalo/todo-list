@@ -21,6 +21,7 @@ import {
 } from './types';
 import firebase from 'firebase';
 import _ from 'lodash';
+import { v4 } from 'uuid';
 
 export const onTitleChange = (title) => {
     return {
@@ -59,7 +60,7 @@ export const onTodoCreate = (title, text) => {
     //             });
     //         });
     // }
-
+    console.log(v4());
     const date = +new Date();
     return {
         type: TODO_CREATE,
