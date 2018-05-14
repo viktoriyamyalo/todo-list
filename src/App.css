@@ -62,7 +62,7 @@ html, body {
   text-align: center; }
 
 .is-vertical {
-  displaty: flex;
+  display: flex;
   flex-direction: column; }
 
 .container {
@@ -191,6 +191,9 @@ html, body {
       background: #EF6735;
       text-decoration: none; }
 
+/* *******************************************
+*			Login Form styles
+********************************************** */
 .overlay {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -207,8 +210,7 @@ html, body {
     flex: none;
     position: relative;
     box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.65);
-    width: 500px;
-    height: 500px; }
+    width: 350px; }
     @media only screen and (max-width: 680px) {
       .overlay .login-form {
         width: 90%;
@@ -220,10 +222,20 @@ html, body {
       position: absolute;
       top: 5px;
       right: 10px; }
+    .overlay .login-form h3 {
+      color: #2F5971;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #00AFB2; }
     .overlay .login-form .form-control {
       margin: 10px 0; }
     .overlay .login-form .btn {
       margin: 10px; }
+    .overlay .login-form .btn-success {
+      background: #2F5971;
+      border: none; }
+    .overlay .login-form .btn:hover {
+      cursor: pointer;
+      background: #00AFB2; }
 
 .noscroll {
   overflow: hidden; }

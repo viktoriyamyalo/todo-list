@@ -79,7 +79,7 @@ $break-tablet: 1024px;
   text-align: center;
 }
 .is-vertical {
-  displaty: flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -241,6 +241,10 @@ $break-tablet: 1024px;
 
 }
 
+/* *******************************************
+*			Login Form styles
+********************************************** */
+
 .overlay {
   background: rgba(0,0,0,0.5);
   position: fixed;
@@ -258,8 +262,7 @@ $break-tablet: 1024px;
     flex: none;
     position: relative;
     box-shadow: 0 12px 30px 0 rgba(0,0,0,.5), inset 0 1px 0 0 hsla(0,0%,100%,.65);
-    width: 500px;
-    height: 500px;
+    width: 350px;
     @media only screen and (max-width: $break-phone) {
       width: 90%;
       height: 90%;
@@ -272,11 +275,24 @@ $break-tablet: 1024px;
       top: 5px;
       right: 10px;
     }
+    h3 {
+      color: #2F5971;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #00AFB2;
+    }
     .form-control {
       margin: 10px 0;
     }
     .btn {
       margin: 10px;
+    }
+    .btn-success {
+      background: #2F5971;
+      border: none;
+    }
+    .btn:hover {
+      cursor: pointer;
+      background: #00AFB2;
     }
   }
 }
