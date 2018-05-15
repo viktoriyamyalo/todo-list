@@ -6,6 +6,7 @@ import LoginForm from './LoginForm';
 import TodoCreateForm from './TodoCreateForm';
 import TodoList from './TodoList';
 import TodoSearchForm from './TodoSearchForm';
+import Chart from "./Chart";
 
 
 class Dashboard extends Component {
@@ -20,6 +21,7 @@ class Dashboard extends Component {
                 </div>
                 <TodoList />
                 {this.props.isLoginFormOpen && <LoginForm />}
+                <Chart todos={this.props.todos}/>
             </Fragment>
         );
     }
@@ -28,7 +30,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoginFormOpen: state.loginForm.isLoginFormOpen
+        isLoginFormOpen: state.loginForm.isLoginFormOpen,
+        todos: state.todos.todos
     }
 }
 
