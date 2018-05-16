@@ -19,7 +19,7 @@ const Chart = ({todos}) => {
 
         "chart": {
             "caption": "Your Todo Ratio",
-            "subcaption": "Last Year",
+            "subcaption": "",
             "startingangle": "120",
             "showlabels": "0",
             "showlegend": "1",
@@ -53,7 +53,10 @@ const Chart = ({todos}) => {
     };
 
     return (
-      <ReactFC {...chartConfigs}/>
+        <div className="container is-centered">
+            <ReactFC {...chartConfigs}/>
+        </div>
+
     );
 }
 

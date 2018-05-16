@@ -15,6 +15,7 @@ import Dashboard from './components/Dashboard';
 import Todo from './components/Todo';
 import Subscription from "./components/Subscription";
 import Checkout from './components/Checkout';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import './App.css';
 
@@ -42,10 +43,12 @@ class App extends Component {
           <Provider store={store}>
             <Router>
               <div className="App">
-                <Route exact path="/" component={Dashboard} />
-                <Route path="/todos/:uid" component={Todo} />
-                <Route path="/subscription" component={Subscription} />
-                <Route path="/checkout/:planTitle" component={Checkout} />
+                <ErrorBoundary>
+                  <Route exact path="/" component={Dashboard} />
+                  <Route path="/todos/:uid" component={Todo} />
+                  <Route path="/subscription" component={Subscription} />
+                  <Route path="/checkout/:planTitle" component={Checkout} />
+                </ErrorBoundary>
               </div>
             </Router>
           </Provider>

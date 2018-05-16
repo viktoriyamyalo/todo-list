@@ -1,6 +1,6 @@
 import { USERNAME_CHANGE, PASSWORD_CHANGE, LOGIN_SUCCESS, SIGNUP_SUCCESS, TOGGLE_LOGIN_FORM, LOGIN_FAIL, SIGNUP_FAIL } from "../actions/types";
 
-const INITIAL_STATE = {username: '', password: '', user: null, isLoginFormOpen:false, error: ''}
+const INITIAL_STATE = {username: '', password: '', user: null, isLoginFormOpen: false, error: ''}
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
         case PASSWORD_CHANGE:
             return {...state, password: action.payload}
         case LOGIN_SUCCESS:
-            return {...INITIAL_STATE, user: action.payload}
+            return {...INITIAL_STATE, user: action.payload1}
         case SIGNUP_SUCCESS:
             return {...INITIAL_STATE, user: action.payload}
         case LOGIN_FAIL: 
